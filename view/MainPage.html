@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Manager</title>
+    <link rel="icon" type="image/jpg" href="../favicon.ico"/>
+    <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="MainPage.js"></script>
+</head>
+<body>
+<div id="navBar"></div>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $.get("TopToolBar.html", function(data){
+        $("#navBar").replaceWith(data);
+    });
+</script>
+<div class="contentBox">
+    <div class="content sideContent" id="userEvents">
+
+    </div>
+    <div class="content mainContent">
+        <h2>Popular Events:</h2>
+        <dl class="displayEvents" id="popularEvents"></dl>
+        <div class="loadMoreContent" id="moreEventsButton">Load More</div>
+    </div>
+</div>
+
+<div id="footer"></div>
+<script>
+    $.get("Footer.html", function(data){
+        $("#footer").replaceWith(data);
+    });
+</script>
+</body>
+</html>

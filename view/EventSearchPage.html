@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Searcher</title>
+    <link rel="icon" type="image/jpg" href="../favicon.ico"/>
+    <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" href="EventSearchPage.js"></script>
+</head>
+<body>
+<div id="navBar"></div>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $.get("TopToolBar.html", function(data){
+        $("#navBar").replaceWith(data);
+    });
+</script>
+
+<div class="contentBox">
+    <div class="content sideContent" id="searchRestrictions">
+        <form>
+            <div class="searchField">
+                VIP status:<br>
+                <input type="radio" id="vipTrue" value="true" name="vip">
+                <label for="vipTrue">vip</label>
+                <input type="radio" id="vipFalse" value="false" name="vip">
+                <label for="vipFalse">not vip</label>
+                <input type="radio" id="vipBoth" value="0" name="vip">
+                <label for="vipBoth">both</label><br>
+            </div>
+
+            <div class="searchField">
+                Event Time:<br>
+                <input type="radio" id="currentTrue" value="true" name="current">
+                <label for="currentTrue">vip</label>
+                <input type="radio" id="currentFalse" value="false" name="current">
+                <label for="currentFalse">not vip</label>
+                <input type="radio" id="currentBoth" value="0" name="current">
+                <label for="currentBoth">both</label><br>
+            </div>
+
+            <div class="searchField">
+                Event Type:<br>
+                <input type="checkbox" id="talk" name="type" value="talk">
+                <label for="talk">Talk</label><br>
+                <input type="checkbox" id="party" name="type" value="party">
+                <label for="party">Party</label><br>
+                <input type="checkbox" id="PanelDiscussion" name="type" value="PanelDiscussion">
+                <label for="PanelDiscussion">Panel Discussion</label><br>
+            </div>
+
+            <div class="searchField">
+                Start Time:<br>
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" name="start"><br>
+                <label for="startHour">Start Hour</label>
+                <select id="startHour" name="start">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select><br>
+            </div>
+
+            <div class="searchField">
+                End Time:<br>
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" name="end"><br>
+                <label for="endHour">End Hour</label>
+                <select id="endHour" name="end">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select><br>
+            </div>
+
+            <div class="searchField">
+                <label for="roomChoice">Rooms: </label><br>
+                <input class="searchBar sideSearchBar" type="text" id="roomChoice"
+                       name="roomChoice" placeholder="format: room1,room2,..."><br>
+            </div>
+
+            <div class="searchField">
+                <label for="speakerChoice">Speakers: </label><br>
+                <input class="searchBar sideSearchBar" type="text" id="speakerChoice"
+                       name="speakerChoice" placeholder="format: speaker1,speaker2,..."><br>
+            </div>
+        </form>
+    </div>
+    <div class="content mainContent">
+        <input class="searchBar mainSearchBar" id="searchKeyword" type="text" name="keyword"
+               placeholder="Enter keywords to search for events...">
+        <div class="loadMoreContent" id="searchStart">Begin Search</div>
+        <p id="searchResultTitle"></p>
+        <dl class="displayEvents" id="searchResult"></dl>
+    </div>
+</div>
+
+<div id="footer"></div>
+<script>
+    $.get("Footer.html", function(data){
+        $("#footer").replaceWith(data);
+    });
+</script>
+</body>
+</html>

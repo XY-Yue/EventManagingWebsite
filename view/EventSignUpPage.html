@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join The Event</title>
+    <link rel="icon" type="image/jpg" href="../favicon.ico"/>
+    <link rel="stylesheet" href="MainStyle.css"/>
+</head>
+<body>
+<div id="navBar"></div>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    $.get("TopToolBar.html", function(data){
+        $("#navBar").replaceWith(data);
+    });
+</script>
+
+<div id="footer"></div>
+<script>
+    $.get("Footer.html", function(data){
+        $("#footer").replaceWith(data);
+    });
+</script>
+</body>
+</html>
