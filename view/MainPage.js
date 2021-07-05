@@ -7,7 +7,8 @@ document.getElementById("moreEventsButton").addEventListener("click", addMoreCon
 var eventPresenter = new EventPresenter();
 
 if (document.getElementById("popularEvents").innerHTML === ""){
-    let content = eventPresenter.searchEvents(0, 0, "", "", null, null, "");
+    let content = eventPresenter.searchEvents(0, 0, "", [],
+        null, null, [], []);
     if (content === ""){
         document.getElementById("popularEvents").innerHTML += "There are currently no events...";
         document.getElementById("moreEventsButton").style.display = "none";
@@ -32,7 +33,7 @@ function updateListener(){
 
 // Loads more event data onto the page
 function addMoreContent(){
-    let content = eventPresenter.getMoreEvents(0, 0, "", "", null, null, "");
+    let content = eventPresenter.getMoreEvents();
 
     if (content === ""){
         document.getElementById("popularEvents").innerHTML += "No more events...";

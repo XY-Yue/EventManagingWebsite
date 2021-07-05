@@ -18,18 +18,31 @@ export default class{
      * @param current indicates if only current events are wanted, 0 means both current and expired,
      *              > 0 means current only, < 0 means expired only
      * @param nameKey key for searching events by name, empty string means any events
-     * @param location location of the desired events, empty string means any location
+     * @param location locations of the desired events in a list, empty list means any location
      * @param start start time of the desired events, null means any start time
      * @param end end time of the desired events, null means any end time
-     * @param type type of the desired events, empty string means any type
+     * @param type types of the desired events in a list, empty list means any type
+     * @param speakers usernames of speakers of the desired events in a list, empty list means any speaker
      * @return string formatted as HTML <dl> elements, representing first 10 resulting events
      */
-    searchEvents(vip, current, nameKey, location, start, end, type){
-        this._allEvents = this._eventManager.searchEventSchedule(vip, current, nameKey, location, start, end, type);
+    searchEvents(vip, current, nameKey, location, start, end, type, speakers){
+        this._allEvents = this._eventManager.searchEventSchedule(vip, current, nameKey, location, start,
+            end, type, speakers);
 
         this._curCount = 1;
 
         return this._formatEventsIntoHTML(this._allEvents.slice(0, 10));
+    }
+
+    /**
+     * Gets the number of results from a previous search
+     */
+    getNumResult(){
+        if (this.hasOwnProperty("_allEvents")){
+            return this._allEvents.length;
+        }else {
+            return 0;
+        }
     }
 
     // helper to format given events into HTML <dl> elements

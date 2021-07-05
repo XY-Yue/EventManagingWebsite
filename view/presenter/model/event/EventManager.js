@@ -124,18 +124,19 @@ export default class{
      * @param current indicates if only current events are wanted, 0 means both current and expired,
      *              > 0 means current only, < 0 means expired only
      * @param nameKey key for searching events by name, empty string means any events
-     * @param location location of the desired events, empty string means any location
+     * @param location locations of the desired events in a list, empty list means any location
      * @param start start time of the desired events, null means any start time
      * @param end end time of the desired events, null means any end time
-     * @param type type of the desired events, empty string means any type
+     * @param type types of the desired events in a list, empty list means any type
+     * @param speakers usernames of speakers of the desired events in a list, empty list means any speaker
      */
-    searchEventSchedule(vip, current, nameKey, location, start, end, type){
+    searchEventSchedule(vip, current, nameKey, location, start, end, type, speakers){
         let output = [];
 
         let date = new Date();
 
         for (const [key, value] of Object.entries(this._eventList)){
-            if (type === "" || key === type){
+            if (type.length === 0 || type.includes(key)){
                 for (const [_, event] of Object.entries(value)){
                     if ((event.isVIP && vip < 0) || (!event.isVIP && vip > 0)){
                         continue; // Event's vip status does not match the requirement
@@ -148,9 +149,20 @@ export default class{
                     (event.start.getTime() > date.getTime() && current < 0)){
                         continue; // Event's expired status does not match requirement
                     }
-                    if (location !== "" && event.location !== location){
-                        continue; // Event is not in the desired location
+                    if (location.length !== 0 && !location.includes(event.location)){
+                        continue; // Event is not in the desired locations
                     }
+
+                    let found = speakers.length === 0;
+                    for (let speaker in event.host){ // For all speakers in event, check if this speaker is desired
+                        if (speakers.includes(speaker)){
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found)// found is true means this event is desired, otherwise we should not include this event
+                        continue;
+
                     if (!event.name.includes(nameKey)){
                         continue; // Event does not match the given keyword
                     }
