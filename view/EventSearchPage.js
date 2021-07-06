@@ -1,26 +1,45 @@
 import EventPresenter from "./presenter/EventPresenter.js";
+import {addMoreContent, updateListener} from "./EventDisplayer.js";
 
 document.getElementById("searchStart").addEventListener("click", beginSearch);
+document.getElementById("moreEventsButton").addEventListener("click", callAddMoreContent);
+document.getElementById("moreEventsButton").style.display = "none";
 var events = new EventPresenter();
 
 // Handles events on EventSearchPage.html
 // Search events with the provided keywords and requirements
 function beginSearch() {
     // We extract all values in the search field and search for those events, add the result to html
+    let location = document.getElementById("roomChoice").value.toString();
+    if (location !== "") {
+        location = location.split(",");
+    }
+
+    let speaker = document.getElementById("speakerChoice").value.toString();
+    if (speaker !== "") {
+        speaker = speaker.split(",");
+    }
+
     document.getElementById("searchResult").innerHTML = events.searchEvents(
         _extractRadioResult("vip"),
         _extractRadioResult("current"),
         document.getElementById("searchKeyword").value.toString(),
-        document.getElementById("roomChoice").value.toString().split(","),
+        location,
         _convertDate(document.getElementById("startDate").value.toString(),
             document.getElementById("startHour").value.toString()),
         _convertDate(document.getElementById("endDate").value.toString(),
             document.getElementById("endHour").value.toString()),
         _extractCheckboxResult("type"),
-        document.getElementById("speakerChoice").value.toString().split(",")
+        speaker
     );
     document.getElementById("searchResultTitle").innerHTML = "Found " + events.getNumResult() + " results:";
-    updateListener();
+    if (events.getNumResult() === 0) {
+        document.getElementById("moreEventsButton").style.display = "none";
+    }else {
+        document.getElementById("moreEventsButton").style.display = "block";
+        updateListener();
+    }
+
 }
 
 
@@ -62,24 +81,20 @@ function _extractCheckboxResult(name){
 // Helper to convert the user input date into an actual date object
 // value: a date string in yyyy-mm-dd format, hour: hour of the date
 function _convertDate(value, hour){
+    if (value === "") {
+        return null;
+    }
     let day = value.split("-");
     return new Date(
         parseInt(day[0], 10), // year
-        parseInt(day[1], 10), // month
+        parseInt(day[1], 10) - 1, // month
         parseInt(day[2], 10), // day
         parseInt(hour, 10) // hour
     );
 }
 
-// Jump to a page to display event details for this event with given ID
-function viewElementDetails(){
-    window.open("EventSignUpPage.html?id=" + this.id);
-}
 
-// When new dt elements are added to the dl, this sets the onClick listener for those dt elements
-function updateListener(){
-    let dt = document.getElementsByTagName("dt");
-    for (let i = 0; i < dt.length; i++){
-        dt[i].addEventListener("click", viewElementDetails);
-    }
+// A helper function to call addMoreContent, avoids duplicated code
+function callAddMoreContent(){
+    addMoreContent(events, "searchResult");
 }

@@ -74,7 +74,7 @@ export default class{
         output += "</dd>";
 
         output += "<dd>";
-        output += event._start.toUTCString() + "  to  " + event._end.toUTCString();
+        output += event._start.toLocaleString() + "  to  " + event._end.toLocaleString();
         output += "</dd>";
 
         output += "<dd>";

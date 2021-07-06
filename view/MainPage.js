@@ -1,9 +1,10 @@
 import EventPresenter from "./presenter/EventPresenter.js";
+import {updateListener, addMoreContent} from "./EventDisplayer.js";
 
 // This view corresponds to MainPage
 
 // This part is responsible for showing popular events on the page
-document.getElementById("moreEventsButton").addEventListener("click", addMoreContent);
+document.getElementById("moreEventsButton").addEventListener("click", callAddMoreContent);
 var eventPresenter = new EventPresenter();
 
 if (document.getElementById("popularEvents").innerHTML === ""){
@@ -18,28 +19,7 @@ if (document.getElementById("popularEvents").innerHTML === ""){
     }
 }
 
-// Jump to a page to display event details for this event with given ID
-function viewElementDetails(){
-    window.open("EventSignUpPage.html?id=" + this.id);
-}
-
-// When new dt elements are added to the dl, this sets the onClick listener for those dt elements
-function updateListener(){
-    let dt = document.getElementsByTagName("dt");
-    for (let i = 0; i < dt.length; i++){
-        dt[i].addEventListener("click", viewElementDetails);
-    }
-}
-
-// Loads more event data onto the page
-function addMoreContent(){
-    let content = eventPresenter.getMoreEvents();
-
-    if (content === ""){
-        document.getElementById("popularEvents").innerHTML += "No more events...";
-        document.getElementById("moreEventsButton").style.display = "none";
-    }else {
-        document.getElementById("popularEvents").innerHTML += content;
-    }
-    updateListener();
+// A helper function to call addMoreContent, avoids duplicated code
+function callAddMoreContent(){
+    addMoreContent(eventPresenter, "popularEvents");
 }
