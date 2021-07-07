@@ -5,6 +5,7 @@
     <title>Log in</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="LoginViews.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,22 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <label for="username">Username: </label>
+        <input class="userInputField" type="text" id="username"
+               name="username" placeholder="Enter username here...">
+        <p id="invalidUsernameWarning" class="warning"></p><br>
+        <label for="password">Password: </label>
+        <input class="userInputField" type="password" id="password"
+               name="password" placeholder="Enter password here...">
+        <p id="invalidPasswordWarning" class="warning"></p><br>
+
+        <button class="submitButton clickable" id="signUp">Don't have an account?</button><br>
+        <button class="submitButton clickable" id="continue">Login</button>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

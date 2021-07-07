@@ -5,6 +5,7 @@
     <title>Sign Up</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="RegisterViews.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,32 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <label for="type">Type of account: </label><br>
+        <select id="type" name="type" class="userInputField">
+
+        </select><br>
+        <p></p>
+
+        <label for="username">Username: </label><br>
+        <input class="userInputField" type="text" id="username"
+               name="username" placeholder="Enter username here...">
+        <p id="invalidUsernameWarning" class="warning"></p><br>
+        <label for="password">Password: </label><br>
+        <input class="userInputField" type="password" id="password"
+               name="password" placeholder="Enter password here...">
+        <p id="invalidPasswordWarning" class="warning"></p><br>
+        <label for="invitation" id="invitationLabel">Invitation Code: </label><br>
+        <input class="userInputField" type="text" id="invitation"
+               name="invitation" placeholder="Enter invitation code here...">
+        <p id="invalidInvitationWarning" class="warning"></p><br>
+
+        <button class="submitButton clickable" id="login">Already have an account?</button><br>
+        <button class="submitButton clickable" id="continue">Create account</button>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

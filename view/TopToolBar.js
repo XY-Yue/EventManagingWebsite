@@ -1,4 +1,4 @@
-if (localStorage.getItem("curAccount") != null){
+if (sessionStorage.getItem("curAccount") != null){
     document.documentElement.style.setProperty('--guest-option', 'none');
     document.documentElement.style.setProperty('--account-option', 'block');
 }else {
@@ -40,4 +40,10 @@ function jumpToMain(){
 
 function jumpToRoom(){
     window.open("RoomViewingPage.html", "_self");
+}
+
+function logOut(){
+    sessionStorage.removeItem("curAccount");
+    sessionStorage.setItem("curType", null);
+    window.open("MainPage.html", "_self");
 }

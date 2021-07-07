@@ -6,7 +6,7 @@ body {
 .content {
     float: left;
     padding: 10px;
-    min-height: 30cm;
+    min-height: 25cm;
     border-radius: 5px;
 }
 
@@ -21,6 +21,8 @@ body {
 
 .content.fullContent {
     width: 100%;
+    padding: 30px;
+    text-align: center;
 }
 
 .contentBox:after {
@@ -46,13 +48,13 @@ body {
     text-decoration-line: underline;
     color: blue;
     font-size: 22px;
-    cursor: pointer;
     height: 35px;
     border-top: 1px solid #aaaaaa;
 }
 
 .displayEvents dt:hover {
     background-color: #999;
+    cursor: pointer;
 }
 
 .displayEvents dd {
@@ -71,7 +73,6 @@ body {
 
 .loadMoreContent:hover {
     background-color: #aaa;
-    cursor: pointer;
 }
 
 .searchField {
@@ -84,4 +85,27 @@ body {
 
 .mainSearchBar {
     height: 30px;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+.userInputField {
+    width: 20%;
+    margin: 10px;
+}
+
+.submitButton {
+    height: 30px;
+    width: 20%;
+    border: 1px solid #777;
+    background-color: #666;
+    color: #111111;
+    text-align: center;
+    margin: 10px;
+}
+
+.submitButton:hover {
+    background-color: #aaa;
 }

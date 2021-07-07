@@ -14,7 +14,13 @@ export default class{
     constructor() {
         // Will be in format: {type: {ID: account of this type with this ID, ...}, ...}
         this._allAccounts = this._readData();
-        this._accountTypes = ["Attendee", "Organizer", "Speaker", "VIP"];
+        this._accountTypes = ["attendee", "organizer", "speaker", "vip"];
+        this._invitationCode = {
+            attendee: [],
+            organizer: ["create and organizer"],
+            speaker: ["create an speaker"],
+            vip: ["create an vip"]
+        }
     }
 
     // This method writes this._allAccounts to storage as a JSON string
@@ -75,7 +81,7 @@ export default class{
     _findAccountByUsername(username){
         for (const [_, value] of Object.entries(this._allAccounts)){
             if (value.hasOwnProperty(username) && value[username] != null)
-                return value.username;
+                return value[username];
         }
         return null;
     }
@@ -474,5 +480,14 @@ export default class{
     checkVIP(username){
         let account = this._findAccountByUsername(username);
         return account != null && account.isVIP();
+    }
+
+    /** Checks if the invitation code is correct for the given type
+     * @param type of  accounts the target invitation code corresponds to
+     * @param invitationCode that belongs to the given type
+     * @return true iff the code is correct
+     */
+    checkInvitation(type, invitationCode){
+        return this._invitationCode.hasOwnProperty(type) && this._invitationCode[type].includes(invitationCode);
     }
 }
