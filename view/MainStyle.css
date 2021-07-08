@@ -23,6 +23,7 @@ body {
     width: 100%;
     padding: 30px;
     text-align: center;
+    align-items: center;
 }
 
 .contentBox:after {
@@ -44,7 +45,7 @@ body {
     color: red;
 }
 
-.displayEvents dt {
+.displayItems dt {
     text-decoration-line: underline;
     color: blue;
     font-size: 22px;
@@ -52,12 +53,12 @@ body {
     border-top: 1px solid #aaaaaa;
 }
 
-.displayEvents dt:hover {
+.displayItems dt:hover {
     background-color: #999;
     cursor: pointer;
 }
 
-.displayEvents dd {
+.displayItems dd {
     font-size: 18px;
     overflow-x: hidden;
 }
@@ -108,4 +109,34 @@ body {
 
 .submitButton:hover {
     background-color: #aaa;
+}
+
+.topButton {
+    height: 30px;
+    width: 20%;
+    display: none;
+    background-color: darkgreen;
+    color: white;
+    border: 1px solid black;
+    float: right;
+    margin: 5px;
+}
+
+.topButton:hover {
+    background-color: forestgreen;
+}
+
+.chooseAvailableTime {
+    width: 50%;
+    overflow: scroll;
+    border: 1px solid black;
+    margin: auto;
+}
+
+.hourChoice {
+    margin: 0;
+    float: left;
+    width: 100px;
+    display: inline;
+    border: 1px solid gray;
 }

@@ -15,6 +15,26 @@
   });
 </script>
 
+<div class="contentBox">
+    <div class="content fullContent">
+        <label for="roomName">Room Name: </label>
+        <input class="userInputField" type="text" id="roomName"
+               name="roomName" placeholder="Enter room name here...">
+        <p id="invalidNameWarning" class="warning"></p><br>
+
+        <div class="chooseAvailableTime">
+            <button class="hourChoice clickable" name="hourChoice" value="1">1</button>
+            <button class="hourChoice clickable" name="hourChoice" value="2">2</button>
+            <button class="hourChoice clickable" name="hourChoice" value="3">3</button>
+            <button class="hourChoice clickable" name="hourChoice" value="4">4</button>
+            <button class="hourChoice clickable" name="hourChoice" value="5">5</button>
+            <button class="hourChoice clickable" name="hourChoice" value="6">6</button>
+        </div>
+<!--        <br>-->
+<!--        <button class="submitButton clickable" id="continue">Create Room</button>-->
+    </div>
+</div>
+
 <div id="footer"></div>
 <script>
   $.get("Footer.html", function(data){

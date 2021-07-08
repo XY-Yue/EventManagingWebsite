@@ -67,14 +67,14 @@ export default class{
     /**
      * Gives the toString description of room with given name.
      * @param roomName the name of room ask for toString description
-     * @return toString description of target room
+     * @return room in a JSON object
      */
     printRoom(roomName){
         let room = this._findRoom(roomName);
         if (room == null) {
             return null;
         }else {
-            return room.toString();
+            return JSON.parse(JSON.stringify(room, reviver));
         }
     }
 
@@ -103,20 +103,15 @@ export default class{
     }
 
     /**
-     * Adds a room
+     * Adds a room, assume the name is valid
      * @param capacity Maximum capacity of the given room
      * @param availableTime Available time slots of the room, in format [[start1, end1], ...]
      * @param roomName A String representation of the room name
      * @param features A list of String representation of additional features
-     * @return true iff the room is added successfully
      */
     addRoom(capacity, availableTime, roomName, features){
-        if (this._findRoom(roomName) == null){
-            this._roomList[roomName] = new Room(capacity, availableTime, roomName, features);
-            this._storeData();
-            return true;
-        }
-        return false;
+        this._roomList[roomName] = new Room(capacity, availableTime, roomName, features);
+        this._storeData();
     }
 
     /**

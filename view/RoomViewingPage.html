@@ -5,6 +5,7 @@
     <title>Rooms</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
   <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="RoomViewingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,17 @@
     $("#navBar").replaceWith(data);
   });
 </script>
+
+<div class="contentBox">
+    <div class="content sideContent">
+
+    </div>
+    <div class="content mainContent">
+        <button class="topButton clickable" id="addRoom">+ Add Room</button>
+        <dl class="displayItems" id="roomList"></dl>
+        <div class="loadMoreContent clickable" id="moreRoomsButton">Load More</div>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>
