@@ -5,6 +5,7 @@
     <title>Add New Room</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
   <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="RoomAddingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -17,21 +18,58 @@
 
 <div class="contentBox">
     <div class="content fullContent">
+        <h1>Add a new room</h1>
         <label for="roomName">Room Name: </label>
         <input class="userInputField" type="text" id="roomName"
                name="roomName" placeholder="Enter room name here...">
         <p id="invalidNameWarning" class="warning"></p><br>
 
+        <label for="capacity">Capacity: </label>
+        <input class="userInputField" type="number" id="capacity" min="1" value="100"
+               name="capacity" placeholder="Enter capacity of the room here..."><br><br>
+
+        Choose all available time slots of this room (choosing '1' means available from 1:00 - 2:00 a.m.)
         <div class="chooseAvailableTime">
+            <button class="hourChoice clickable" name="hourChoice" value="0">0</button>
             <button class="hourChoice clickable" name="hourChoice" value="1">1</button>
             <button class="hourChoice clickable" name="hourChoice" value="2">2</button>
             <button class="hourChoice clickable" name="hourChoice" value="3">3</button>
             <button class="hourChoice clickable" name="hourChoice" value="4">4</button>
             <button class="hourChoice clickable" name="hourChoice" value="5">5</button>
             <button class="hourChoice clickable" name="hourChoice" value="6">6</button>
+            <button class="hourChoice clickable" name="hourChoice" value="7">7</button>
+            <button class="hourChoice clickable" name="hourChoice" value="8">8</button>
+            <button class="hourChoice clickable" name="hourChoice" value="9">9</button>
+            <button class="hourChoice clickable" name="hourChoice" value="10">10</button>
+            <button class="hourChoice clickable" name="hourChoice" value="11">11</button>
+            <button class="hourChoice clickable" name="hourChoice" value="12">12</button>
+            <button class="hourChoice clickable" name="hourChoice" value="13">13</button>
+            <button class="hourChoice clickable" name="hourChoice" value="14">14</button>
+            <button class="hourChoice clickable" name="hourChoice" value="15">15</button>
+            <button class="hourChoice clickable" name="hourChoice" value="16">16</button>
+            <button class="hourChoice clickable" name="hourChoice" value="17">17</button>
+            <button class="hourChoice clickable" name="hourChoice" value="18">18</button>
+            <button class="hourChoice clickable" name="hourChoice" value="19">19</button>
+            <button class="hourChoice clickable" name="hourChoice" value="20">20</button>
+            <button class="hourChoice clickable" name="hourChoice" value="21">21</button>
+            <button class="hourChoice clickable" name="hourChoice" value="22">22</button>
+            <button class="hourChoice clickable" name="hourChoice" value="23">23</button>
         </div>
-<!--        <br>-->
-<!--        <button class="submitButton clickable" id="continue">Create Room</button>-->
+        <p class="warning" id="availableWarning"></p><br>
+
+        Choose Room Features:
+        <div class="chooseFeature" id="features">
+        </div>
+
+        <button class="clickable addFeature" id="addFeature">+ Add More Features</button><br>
+
+        <label for="moreFeatures" id="moreFeaturesLabel" class="moreFeaturesInput">Enter a new feature:</label>
+        <input type="text" id="moreFeatures" class="moreFeaturesInput" placeholder="Enter new features here...">
+        <button id="ADD" class="confirmAddButton clickable">+ADD</button>
+
+        <p class="warning" id="newFeatureInvalidWarning"></p>
+        <br>
+        <button class="submitButton clickable" id="continue">Create Room</button>
     </div>
 </div>
 

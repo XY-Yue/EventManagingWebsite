@@ -1,5 +1,6 @@
 import AccountPresenter from "./presenter/AccountPresenter.js";
 
+// Sets event listeners for elements in the HTML file
 document.getElementById("login").addEventListener("click", jumpToLogin);
 document.getElementById("continue").addEventListener("click", createAccount);
 document.getElementById("type").innerHTML += new AccountPresenter().accountTypes();
@@ -7,7 +8,7 @@ document.getElementById("type").addEventListener("change", needInvitation);
 document.getElementById("invitation").style.display = "none";
 document.getElementById("invitationLabel").style.display = "none";
 
-
+// Handles account creation request from user
 function createAccount(){
     let username = document.getElementById("username").value.toString();
     let password = document.getElementById("password").value.toString();

@@ -1,9 +1,10 @@
 import AccountPresenter from "./presenter/AccountPresenter.js";
 
+// Sets event listener of elements
 document.getElementById("signUp").addEventListener("click", jumpToSignUp);
 document.getElementById("continue").addEventListener("click", authenticate);
 
-
+// Handles login request from user
 function authenticate(){
     let username = document.getElementById("username").value.toString();
     let password = document.getElementById("password").value.toString();

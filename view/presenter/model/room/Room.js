@@ -18,10 +18,9 @@ export default class {
     constructor(capacity, availableTimeSlots, roomName, features){
         this._capacity = capacity;
 
-        let slots;
         this._availableTimes = []; // This will be a 2D array
-        for (slots in availableTimeSlots){
-            this._availableTimes.push([slots[0], slots[1]]);
+        for (let i = 0; i < availableTimeSlots.length; i++){
+            this._availableTimes.push([availableTimeSlots[i][0], availableTimeSlots[i][1]]);
         }
 
         this._features = Array.from(features);

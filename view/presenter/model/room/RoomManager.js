@@ -16,14 +16,14 @@ export default class{
         // format: {room name: room object with this name, ...}
         this._roomList = this._readData("roomList");
         this._roomFeatureList = this._readData("roomFeatureList");
-        if (this._roomFeatureList === [])
-            this._roomFeatureList = ["Projector", "Row of chairs", "Table", "Computers"]; // records features available
+        if (this._roomFeatureList.length === 0)
+            this._roomFeatureList = ["projector", "row of chairs", "table", "computers"]; // records features available
     }
 
     // Writes roomList and roomFeatureList to local storage
     _storeData(){
-        localStorage.setItem("roomList", this._roomList);
-        localStorage.setItem("roomFeatureList", this._roomFeatureList);
+        localStorage.setItem("roomList", JSON.stringify(this._roomList));
+        localStorage.setItem("roomFeatureList", JSON.stringify(this._roomFeatureList));
     }
 
     // Reads room information from local storage, parse JSON objects to room objects with methods
@@ -36,15 +36,14 @@ export default class{
             }else {
                 return [];
             }
-        }
-        else {
+        } else {
             if (key === "roomFeatureList"){
                 return JSON.parse(data);
             }else {
                 data = JSON.parse(data, reviver);
 
                 for (const [key, value] of Object.entries(data)){
-                    let room = new Room(value._capacity, value._availableTime, value._roomName,
+                    let room = new Room(value._capacity, value._availableTimes, value._roomName,
                         value._features);
 
                     for (const [event, time] of Object.entries(value._schedule)){

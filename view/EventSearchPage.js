@@ -1,5 +1,6 @@
 import EventPresenter from "./presenter/EventPresenter.js";
 import {addMoreContent, updateListener} from "./EventDisplayer.js";
+import {extractCheckboxResult} from "./InputParser.js";
 
 document.getElementById("searchStart").addEventListener("click", beginSearch);
 document.getElementById("moreEventsButton").addEventListener("click", callAddMoreContent);
@@ -29,7 +30,7 @@ function beginSearch() {
             document.getElementById("startHour").value.toString()),
         _convertDate(document.getElementById("endDate").value.toString(),
             document.getElementById("endHour").value.toString()),
-        _extractCheckboxResult("type"),
+        extractCheckboxResult("type"),
         speaker
     );
     document.getElementById("searchResultTitle").innerHTML = "Found " + events.getNumResult() + " results:";
@@ -61,20 +62,6 @@ function _extractRadioResult(name){
     }else {
         return 0;
     }
-}
-
-
-// Helper to extract user choices from a checkbox input
-// name is the name of the checkboxes
-function _extractCheckboxResult(name){
-    let checkbox = document.getElementsByName(name);
-    let choice = [];
-    for (let i = 0; i < checkbox.length; i++){
-        if (checkbox[i].checked){ // Finding the user's choice
-            choice.push(checkbox[i].value.toString());
-        }
-    }
-    return choice;
 }
 
 
