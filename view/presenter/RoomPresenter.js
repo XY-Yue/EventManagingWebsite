@@ -9,11 +9,70 @@ export default class {
     }
 
     /**
-     * Display all room information formatted in HTML <dt> and <dd> elements
+     * Search rooms that matches the given constrains, output room information formatted in HTML <dt> and <dd> elements
+     * @param roomNameKeyword a string representing keyword in roomName, empty means any room name
+     * @param capacity a string containing a integer representing minimum capacity of the desired room
+     * @param available a pair of string containing integers as available times for the room, empty string means any
+     * @param features an array of desired features of rooms
      * @return string containing the first 10 room information formatted correctly
      */
-    displayRooms(){
+    searchRooms(roomNameKeyword, capacity, available, features){
+        capacity = parseInt(capacity);
+        if (available[0] === "-"){
+            available = []; // This means no requirement on available time
+        }else {
+            available[0] = parseInt(available[0]);
+            available[1] = parseInt(available[1]);
+        }
 
+        this._allRooms = this._roomManager.searchRoomsInfo(roomNameKeyword, capacity, available, features);
+        this._curCount = 1;
+
+        return this._formatRoomsIntoHTML(this._allRooms.slice(0, 10));
+    }
+
+    /**
+     * Gets the number of results from a previous search
+     */
+    getNumResult(){
+        if (this.hasOwnProperty("_allRooms")){
+            return this._allRooms.length;
+        }else {
+            return 0;
+        }
+    }
+
+    // helper to format given rooms into HTML <dl> elements
+    _formatRoomsIntoHTML(rooms){
+        let output = "";
+        for (let i = 0; i < rooms.length; i++){
+            output += this._formatRoomIntoHTML(rooms[i]);
+        }
+        return output;
+    }
+
+    // helper to format a single room into a HTML <dl> element, where name is <dt> and details are in <dd>
+    _formatRoomIntoHTML(room){
+        let output = "";
+
+        output += "<dt id='" + room._roomName + "'>";
+        output += room._roomName;
+        output += "</dt>";
+
+        output += "<dd>";
+        output += "Capacity: " + room._capacity.toString();
+        output += "</dd>";
+
+        output += "<dd>";
+        output += "Available at: "
+        for (let i = 0; i < room._availableTimes.length; i++){
+            output += room._availableTimes[i][0] + "-" + room._availableTimes[i][1] + "   ";
+        }
+        output += "</dd>";
+
+        this._curCount++;
+
+        return output;
     }
 
     /**
@@ -76,6 +135,13 @@ export default class {
         }
     }
 
+    /**
+     * Gets the next 10 rooms from a previous search result
+     * @return {string} of rooms formatted as HTML <dl> element's inner HTML
+     */
+    getMoreRooms(){
+        return this._formatRoomsIntoHTML(this._allRooms.slice(this._curCount - 1, this._curCount + 9));
+    }
 }
 
 

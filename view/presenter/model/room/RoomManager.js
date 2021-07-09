@@ -171,13 +171,28 @@ export default class{
 
     /**
      * Generates a String representation of the room info
-     * @return room toString info for all rooms
+     * @param roomName a string keyword of roomName
+     * @param capacity an integer representing minimum capacity of the rooms needed
+     * @param available a pair of integer representing a time period that the room need to be available
+     * @param features all features the room need to have
+     * @return room info for all desired rooms in JSON objects
      */
-    getRoomsInfo(){
-        let room;
+    searchRoomsInfo(roomName, capacity, available, features){
         let output = [];
-        for (room in Object.values(this._roomList)){
-            output.push(room.toString());
+        for (const [key, value] of Object.entries(this._roomList)){
+            if (!key.includes(roomName)){
+                continue;
+            }
+            if (value.capacity < capacity){
+                continue;
+            }
+            if (available.length !== 0 && !value.isValidTimeSlot(available[0], available[1])){
+                continue;
+            }
+            if (!value.hasFeatures(features)){
+                continue;
+            }
+            output.push(JSON.parse(JSON.stringify(value, reviver)));
         }
         return output;
     }

@@ -4,6 +4,7 @@ import {extractCheckboxResult} from "./InputParser.js";
 const SELECTED = "forestgreen";
 const NOT_SELECTED = "white";
 
+// Sets onClick listeners and some starting styles
 document.getElementById("features").innerHTML += new RoomPresenter().allFeatures();
 document.getElementById("ADD").style.display = "none";
 document.getElementById("ADD").addEventListener("click", addFeatureConfirm);
@@ -15,6 +16,7 @@ for (let i = 0; i < elements.length; i++){
 }
 
 
+// Responses the click event of the button "Add features" by showing the input box to add features
 function addFeatureRequest(){
     document.getElementById("moreFeaturesLabel").style.display = "inline";
     document.getElementById("moreFeatures").style.display = "inline";
@@ -22,8 +24,15 @@ function addFeatureRequest(){
 }
 
 
+// Responses user's request to add a feature entered in the input field
 function addFeatureConfirm(){
     let newFeature = document.getElementById("moreFeatures").value.toString();
+
+    if (newFeature === ""){
+        document.getElementById("newFeatureInvalidWarning").innerHTML = "Please enter a new feature";
+        return;
+    }
+
     let formatted = new RoomPresenter().addFeature(newFeature);
     let origChoice = extractCheckboxResult("feature");
 
@@ -40,6 +49,7 @@ function addFeatureConfirm(){
 }
 
 
+// Respond user's click event on the buttons in the select hour field, changes its color
 function hourSelected(){
     if (this.style.backgroundColor === SELECTED){
         this.style.backgroundColor = NOT_SELECTED;
@@ -49,6 +59,7 @@ function hourSelected(){
 }
 
 
+// Response to user's request to add a new room, if success, redirect to RoomViewingPage
 function addRoom(){
     document.getElementById("invalidNameWarning").innerHTML = "";
     document.getElementById("availableWarning").innerHTML = "";
@@ -77,6 +88,7 @@ function addRoom(){
 }
 
 
+// Extract user's choice on the room's available hours
 function extractHours(name){
     let choices = document.getElementsByName(name);
     let output = [];

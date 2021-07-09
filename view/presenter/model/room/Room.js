@@ -56,10 +56,9 @@ export default class {
         if (start > end) {
             return this.isValidTimeSlot(0, start) && this.isValidTimeSlot(end, 24);
         }else {
-            let slot;
-            for (slot in this._availableTimes){
-                if (!(slot[0] > end || slot[1] < start)){
-                    return slot[0] <= start && slot[1] >= end;
+            for (let i = 0; i < this._availableTimes.length; i++){
+                if (this._availableTimes[i][0] <= start && this._availableTimes[i][1] >= end){
+                    return true;
                 }
             }
             return false;
@@ -100,9 +99,17 @@ export default class {
      * @return true iff the room has all the features given by
      */
     hasFeatures(checkedFeatures){
-        let feature;
-        for (feature in checkedFeatures){
-            if (!this._features.includes(feature)) return false;
+        for (let j = 0; j < checkedFeatures.length; j++){
+            let pass = false;
+            for (let i = 0; i < this._features.length; i++){
+                if (checkedFeatures[j] === this._features[i]){
+                    pass = true;
+                    break;
+                }
+            }
+            if (!pass) {
+                return false;
+            }
         }
         return true;
     }
