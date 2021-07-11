@@ -43,4 +43,8 @@ export default class extends Account{
     isVIP() {
         return false;
     }
+
+    specialDescription(){
+        return null;
+    }
 }

@@ -43,11 +43,6 @@ export default class{
                     value[id] = this._parseAccount(value[id]);
                 }
             }
-            // for (let i = 0; i < accountObj.length; i++){
-            //     for (let j = 0; j < accountObj[i][1].length; j++){
-            //         accountObj[i][1][j] = this._parseAccount(accountObj[i][1][j]);
-            //     }
-            // }
             return accountObj;
         }
     }
@@ -58,8 +53,8 @@ export default class{
         if (jsonObj == null) return null;
         let account = new AccountFactory().getAccount(jsonObj._type, jsonObj._name, jsonObj._password);
 
-        for (let friend in jsonObj._friends){
-            account.addFriend(friend);
+        for (let i = 0; i < jsonObj._friends.length; i++){
+            account.addFriend(jsonObj._friends[i]);
         }
 
         for (const [key, value] of Object.entries(jsonObj._schedule)){
@@ -71,8 +66,8 @@ export default class{
         }
 
         if (jsonObj.hasOwnProperty('_specialEvents')){
-            for (let spec in jsonObj._specialEvents){
-                account.addToSpecialList(spec);
+            for (let i = 0; i < jsonObj._specialEvents.length; i++){
+                account.addToSpecialList(jsonObj._specialEvents[i]);
             }
         }
         return account;
@@ -139,6 +134,18 @@ export default class{
     }
 
     /**
+     * Get the user's type
+     * @param username A string represents the username of this account.
+     * @return type of this account iff the account exists, otherwise return null
+     */
+    checkType(username){
+        let account = this._findAccountByUsername(username);
+
+        if (account == null) return null;
+        else return account.type;
+    }
+
+    /**
      * Adds a new account to specific account lists basing on the type of this new account. If this account is a
      * speaker account, it is added to speakerList. ELse, it is added to allAccounts.
      * Assumes that this account does not exist
@@ -176,17 +183,18 @@ export default class{
     /**
      * Signs up a event for an account at a given time interval
      * @param time A time interval where start time is at index 0 and end time is index 1
-     * @param event A string represents the unique id of this event.
+     * @param eventID A string represents the unique id of this event.
      * @param username A string represents the username of an account.
+     * @param eventName name of the event
      * @return true iff this account exists and is available at the given time list
      */
-    signUpEvent(time, event, username){
+    signUpEvent(time, eventID, username, eventName){
         let account = this._findAccountByUsername(username);
 
         if (account == null || !account.isAvailable(time[0], time[1])){
             return false;
         }else {
-            account.addEvent(time[0], time[1], event);
+            account.addEvent(time[0], time[1], eventID, eventName);
             this._storeData();
             return true;
         }
@@ -214,8 +222,7 @@ export default class{
     /**
      * Gets a list of strings representing the events that the user signed up.
      * @param username A string represents the username of the account.
-     * @return Array representing user's current signed up events in the format of
-     * a string array with [start time, end time, event ID], if the target account exists.
+     * @return object with eventID mapped to an array of [start time, finish time, event name]
      */
     viewSignedUpEvents(username){
         let account = this._findAccountByUsername(username);
@@ -224,6 +231,21 @@ export default class{
             return null;
         }
         return account.schedule;
+    }
+
+    /**
+     * Gets the number of up coming and expired events of the user
+     * @param username the target user's username
+     * @return pair of integer representing the number of [up coming, expired] events
+     */
+    getNumberOfEvents(username){
+        let account = this._findAccountByUsername(username);
+
+        if (account == null) {
+            return null;
+        }else {
+            return account.numberOfEvents();
+        }
     }
 
     /**
@@ -489,5 +511,18 @@ export default class{
      */
     checkInvitation(type, invitationCode){
         return this._invitationCode.hasOwnProperty(type) && this._invitationCode[type].includes(invitationCode);
+    }
+
+    /**
+     * Gets a message that describes what kind of events are special to the account
+     * @param username the target account's username
+     * @return string that represents the message
+     */
+    getSpecialDescription(username){
+        let account = this._findAccountByUsername(username);
+
+        if (account != null) {
+            return account.specialDescription();
+        }else return null;
     }
 }

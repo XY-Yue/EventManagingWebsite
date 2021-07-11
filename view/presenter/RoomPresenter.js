@@ -168,7 +168,9 @@ export default class {
 
         let schedule = "";
         for (const [key, value] of Object.entries(room._schedule)){
-            schedule += key + ": " + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
+            if (value[1].getTime() > new Date().getTime()){
+                schedule += key + ": " + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
+            }
         }
         room._schedule = schedule;
 

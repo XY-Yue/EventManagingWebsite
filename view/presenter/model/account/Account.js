@@ -62,10 +62,11 @@ export default class {
      * @param startTime Represents the start time of the event
      * @param endTime Represents the end time of the event
      * @param id A String representing the id of the new event.
+     * @param name name of the event
      */
-    addEvent(startTime, endTime, id){
+    addEvent(startTime, endTime, id, name){
         // Assume everything is valid and checked before this call and the id is not already in schedule
-        this._schedule[id] = [startTime, endTime];
+        this._schedule[id] = [startTime, endTime, name];
     }
 
     /**
@@ -109,7 +110,12 @@ export default class {
      * @return true iff this account has a friend of the given username, false otherwise.
      */
     hasFriend(username) {
-        return this._friends.includes(username);
+        for (let i = 0; i < this._friends.length; i++){
+            if (this._friends[i].toString() === username.toString()){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -141,7 +147,7 @@ export default class {
         if (this._message.hasOwnProperty(key) && this._message[key] != null){
             return Array.from(this._message[key]);
         }
-        return null;
+        return [];
     }
 
     /**
@@ -182,5 +188,22 @@ export default class {
         }else {
             this._message[key] = Array.from(lst);
         }
+    }
+
+    /**
+     * Gets the number of up coming events of this account
+     * @return number of up coming events
+     */
+    numberOfEvents(){
+        let upComing = 0;
+        let expired = 0;
+        for (const [key, value] of Object.entries(this._schedule)){
+            if (value[0] > new Date().getTime()){
+                upComing++;
+            }else {
+                expired++;
+            }
+        }
+        return [upComing, expired];
     }
 }

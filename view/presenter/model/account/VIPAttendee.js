@@ -61,4 +61,8 @@ export default class extends Account{
     isVIP() {
         return true;
     }
+
+    specialDescription(){
+        return "VIP events";
+    }
 }

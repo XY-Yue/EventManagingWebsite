@@ -3,7 +3,7 @@ import {extractCheckboxResult} from "./InputParser.js";
 
 // First extract the room name from query text in URL
 var roomName = window.location.search.split("=")[1];
-document.getElementById("title").innerHTML += roomName;
+document.getElementById("title").innerHTML = roomName;
 fillRoomInfo();
 document.getElementById("featureAdder").style.display = "none";
 document.getElementById("ADD").style.display = "inline";

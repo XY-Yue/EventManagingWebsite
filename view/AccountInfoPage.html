@@ -5,6 +5,7 @@
     <title>My Account</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="AccountInfoPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,66 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <button class="topButton clickable" id="addFriend">+ Add to friend list</button>
+        <h1 id="title"></h1>
+        <table class="displayDetailTable">
+            <tr>
+                <td class="fieldName">Type: </td>
+                <td>
+                    <div id="type">
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="passwordRow">
+                <td class="fieldName">Password: </td>
+                <td>
+                    <button class="addFeature clickable" id="changePassword">Change Password</button>
+                    <div id="passwordChanger" style="display: none">
+                        <label for="oldPwd">Old password: </label>
+                        <input class="userInputField" type="password" id="oldPwd"
+                               name="oldPwd" placeholder="Enter old password here...">
+                        <p id="invalidOldPwdWarning" class="warning"></p><br>
+                        <label for="password">New password: </label>
+                        <input class="userInputField" type="password" id="password"
+                               name="password" placeholder="Enter password here...">
+                        <p id="invalidPasswordWarning" class="warning"></p><br>
+                        <button class="addFeature clickable" id="applyPwdChange">Change</button>
+                    </div>
+                </td>
+            </tr>
+            <tr id="messageRow">
+                <td class="fieldName">Messages: </td>
+                <td>
+                    <div id="messages">
+
+                    </div>
+                    <button class="addFeature clickable" id="viewMessage">View Messages</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Events: </td>
+                <td>
+                    <div id="events">
+
+                    </div>
+                    <button class="addFeature clickable" id="viewSchedule">View Schedule</button>
+                </td>
+            </tr>
+            <tr id="specialList">
+                <td class="fieldName">Your Special Events: </td>
+                <td>
+                    <div id="specialEvents">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

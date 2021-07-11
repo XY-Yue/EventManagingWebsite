@@ -59,4 +59,56 @@ export default class{
         }
         return output;
     }
+
+    /**
+     * Gets the target account's information, parsed so that it can be directly displayed into HTML
+     * @param username target account's username
+     * @return account information in a new object with keys [type, unreadMessages, upComingEvents, specialEvents]
+     */
+    getAccount(username){
+        let account = {};
+        account.type = this._accountManager.checkType(username);
+
+        account.unreadMessages = this._accountManager.getMessageList(username, "unread").length;
+
+        account.numberOfEvents = this._accountManager.getNumberOfEvents(username);
+
+        account.specialEvents = "";
+        let specialEvents = this._accountManager.getSpecialDescription(username);
+        if (specialEvents != null) {
+            account.specialEvents += specialEvents + "<br>";
+            let specialList = this._accountManager.getSpecialList(username);
+
+            for (let i = 0; i < specialList.length; i++){
+                account.specialEvents += specialList[i] + "<br>";
+            }
+        }
+
+        return account;
+    }
+
+    /**
+     * Handles user request to change password, makes sure the old password is correct before changing
+     * @param username the username of the target account
+     * @param oldPwd old password of the account
+     * @param newPwd new password to be changed
+     * @return boolean to indicate if the old password is correct
+     */
+    changePassword(username, oldPwd, newPwd){
+        if (this._accountManager.checkPassword(username, oldPwd) != null){
+            this._accountManager.setPassword(newPwd, username);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    addFriend(selfUsername, friendUsername){
+        let outcome = this._accountManager.addFriend(selfUsername, friendUsername);
+        if (outcome) {
+            return "added to friend list successfully";
+        }else {
+            return "this user is already in your friend list";
+        }
+    }
 }
