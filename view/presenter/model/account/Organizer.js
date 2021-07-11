@@ -10,7 +10,7 @@ export default class extends Account{
      * @param password A string represents the password of this organizer account.
      */
     constructor(name, password) {
-        super(name, password, "Organizer");
+        super(name, password, "organizer");
         this._specialEvents = [];
         this._isVIP = true;
     }

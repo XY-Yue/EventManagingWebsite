@@ -47,7 +47,7 @@ export default class{
                         value._features);
 
                     for (const [event, time] of Object.entries(value._schedule)){
-                        room.addEventToSchedule(time[0], time[1], event);
+                        room.addEventToSchedule(time[0], time[1], event, time[2]);
                     }
                     data[key] = room;
                 }
@@ -126,14 +126,15 @@ export default class{
      * Adds an event to a room
      * @param roomName A String representation of the room name
      * @param eventID A String representation of the event id
+     * @param eventName Name of the event
      * @param startTime Start time of the interval
      * @param endTime End time of the interval
      * @return true iff the event is added successfully
      */
-    addEventToRoom(roomName, eventID, startTime, endTime){
+    addEventToRoom(roomName, eventID, eventName, startTime, endTime){
         let room = this._findRoom(roomName);
         if (room != null){
-            room.addEventToSchedule(startTime, endTime, eventID);
+            room.addEventToSchedule(startTime, endTime, eventID, eventName);
             this._storeData();
         }
         return false;
@@ -221,5 +222,17 @@ export default class{
     addFeature(feature){
         this._roomFeatureList.push(feature);
         this._storeData();
+    }
+
+    addFeatureToRoom(roomName, features){
+        let room = this._findRoom(roomName);
+        if (room != null){
+            let output = room.addFeatures(features);
+            if (output.length !== 0){
+                this._storeData();
+            }
+            return output;
+        }
+        return [];
     }
 }

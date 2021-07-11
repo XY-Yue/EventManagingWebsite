@@ -25,7 +25,7 @@ export default class {
 
         this._features = Array.from(features);
         this._roomName = roomName;
-        this._schedule = []; // Will be in format {eventID: [start time of this event, end time of this event], ...}
+        this._schedule = [];// Will be in format {eventID: [startTime of this event, endTime of this event, name], ...}
     }
 
     /**
@@ -71,8 +71,8 @@ export default class {
      * @param endTime End time of the interval
      * @param eventID A String representation of the event id
      */
-    addEventToSchedule(startTime, endTime, eventID){
-        this._schedule[eventID] = [startTime, endTime];
+    addEventToSchedule(startTime, endTime, eventID, eventName){
+        this._schedule[eventID] = [startTime, endTime, eventName];
     }
 
     /**
@@ -114,17 +114,14 @@ export default class {
         return true;
     }
 
-    /**
-     * Give the toString representation of a room object
-     */
-    toString(){
-        let result = this._roomName;
-        result += '\n' + 'capacity: ' + this._capacity + '\n';
-        result += 'features: ';
-        let features;
-        for (features in this._features){
-            result += features + '; ';
+    addFeatures(features){
+        let added = [];
+        for (let i = 0; i < features.length; i++){
+            if (!this._features.includes(features[i].toString())){
+                this._features.push(features[i].toString());
+                added.push(features[i]);
+            }
         }
-        return result;
+        return added;
     }
 }

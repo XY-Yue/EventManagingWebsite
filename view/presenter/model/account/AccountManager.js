@@ -17,7 +17,7 @@ export default class{
         this._accountTypes = ["attendee", "organizer", "speaker", "vip"];
         this._invitationCode = {
             attendee: [],
-            organizer: ["create and organizer"],
+            organizer: ["create an organizer"],
             speaker: ["create an speaker"],
             vip: ["create an vip"]
         }

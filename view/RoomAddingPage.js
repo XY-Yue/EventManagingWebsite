@@ -6,7 +6,6 @@ const NOT_SELECTED = "white";
 
 // Sets onClick listeners and some starting styles
 document.getElementById("features").innerHTML += new RoomPresenter().allFeatures();
-document.getElementById("ADD").style.display = "none";
 document.getElementById("ADD").addEventListener("click", addFeatureConfirm);
 document.getElementById("addFeature").addEventListener("click", addFeatureRequest);
 document.getElementById("continue").addEventListener("click", addRoom);

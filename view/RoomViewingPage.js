@@ -27,7 +27,7 @@ if (document.getElementById("roomList").innerHTML === ""){
     }
 }
 
-
+// Provides link to the room titles on the page so that they link to the page with detailed room info
 function updateListener(){
     let dt = document.getElementsByTagName("dt");
     for (let i = 0; i < dt.length; i++){
@@ -35,7 +35,7 @@ function updateListener(){
     }
 }
 
-
+// Respond to on click event of the load more button
 function loadMoreRooms(){
     let content = roomPresenter.getMoreRooms();
 
@@ -48,17 +48,17 @@ function loadMoreRooms(){
     updateListener();
 }
 
-
+// Respond to user click for the add room button
 function addRoom(){
     window.open("RoomAddingPage.html", "_self");
 }
 
-
+// Goes to a new page with detailed info for the target room
 function viewRoom(){
     window.open("RoomDetailPage.html?name=" + this.id);
 }
 
-
+// Respond to user click on apply filter button by searching rooms with the given keywords
 function searchRooms(){
     let keyword = document.getElementById("roomName").value.toString();
     let capacity = document.getElementById("capacity").value.toString();

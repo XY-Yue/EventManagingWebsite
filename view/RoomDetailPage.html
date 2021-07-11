@@ -5,6 +5,7 @@
     <title>Room</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
   <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="RoomDetailPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,61 @@
     $("#navBar").replaceWith(data);
   });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <h1 id="title"></h1>
+        <table class="displayDetailTable">
+            <tr>
+                <td class="fieldName">Capacity: </td>
+                <td>
+                    <div id="capacity">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Available at: </td>
+                <td>
+                    <div id="available">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Features: </td>
+                <td>
+                    <div id="features">
+
+                    </div>
+                    <button class="clickable addFeature" id="addFeatureToRoom">+ Add</button><br>
+                    <br>
+
+                    <div id="featureAdder">
+                        <div class="chooseFeature" id="additionalFeatures" style="font-size: 14px">
+                        </div>
+
+                        <button class="clickable addFeature" id="addFeature">+ Add More</button><br>
+                        <label for="moreFeatures" id="moreFeaturesLabel"
+                               class="moreFeaturesInput">Enter a new feature:</label><br>
+                        <input type="text" id="moreFeatures" class="moreFeaturesInput"
+                               placeholder="Enter new features here..."><br>
+                        <button id="ADD" class="confirmAddButton clickable">+ADD</button><br>
+                        <div class="warning" id="addFeatureFeedback"></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Events: </td>
+                <td>
+                    <div id="schedule">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

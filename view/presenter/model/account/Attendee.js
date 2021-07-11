@@ -10,7 +10,7 @@ export default class extends Account{
      * @param password  A string represents the password of this attendee account.
      */
     constructor(name, password) {
-        super(name, password, "Attendee");
+        super(name, password, "attendee");
     }
 
     /** Gets the list of events specialized for this account (unavailable for attendee)

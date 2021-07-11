@@ -10,7 +10,7 @@ export default class extends Account{
      * @param password A string represents the password of this speaker account.
      */
     constructor(name, password) {
-        super(name, password, "Speaker");
+        super(name, password, "speaker");
         this._specialEvents = [];
         this._isVIP = true;
     }

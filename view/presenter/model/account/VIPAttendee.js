@@ -11,7 +11,7 @@ export default class extends Account{
      * @param password The password to log in this account.
      */
     constructor(name, password) {
-        super(name, password, "VIP");
+        super(name, password, "vip");
         this._specialEvents = [];
     }
 

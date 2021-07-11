@@ -142,6 +142,48 @@ export default class {
     getMoreRooms(){
         return this._formatRoomsIntoHTML(this._allRooms.slice(this._curCount - 1, this._curCount + 9));
     }
+
+    /**
+     * Gets data for a single room with this given roomName
+     * @param roomName the name of the desired room
+     * @return object with field name mapped to strings representing value of the fields
+     */
+    getSingleRoom(roomName){
+        // Converting to a string literal to avoid mistake comparison between object and literal
+        let room = this._roomManager.printRoom(roomName.toString());
+
+        room._capacity = room._capacity.toString();
+
+        let available = "";
+        for (let i = 0; i < room._availableTimes.length; i++){
+            available += room._availableTimes[i][0] + "-" + room._availableTimes[i][1] + "   ";
+        }
+        room._availableTimes = available;
+
+        let features = "";
+        for (let i = 0; i < room._features.length; i++){
+            features += room._features[i] + "<br>";
+        }
+        room._features = features;
+
+        let schedule = "";
+        for (const [key, value] of Object.entries(room._schedule)){
+            schedule += key + ": " + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
+        }
+        room._schedule = schedule;
+
+        return room;
+    }
+
+    addFeatureToRoom(roomName, features){
+        let result = this._roomManager.addFeatureToRoom(roomName, features);
+
+        let output = "";
+        for (let i = 0; i < result.length; i++){
+            output += result[i] + "; ";
+        }
+        return output;
+    }
 }
 
 
