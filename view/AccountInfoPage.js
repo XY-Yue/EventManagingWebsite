@@ -59,12 +59,12 @@ if (userName != null && userName !== ""){
 
 
 function jumpToMessage(){
-    window.open("MessageViewingPage.html?name=" + curAcc, "_self");
+    window.open("MessageViewingPage.html", "_self");
 }
 
 
 function jumpToSchedule(){
-    window.open("SchedulePage.html?name=" + curAcc, "_self");
+    window.open("SchedulePage.html", "_self");
 }
 
 

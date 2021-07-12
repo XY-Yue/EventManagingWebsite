@@ -5,6 +5,7 @@
     <title>My Schedule</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="SchedulePage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,23 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content sideContent" id="searchRestrictions">
+        <div class="searchField">
+            Event Time:<br>
+            <input type="radio" id="currentTrue" value="true" name="current">
+            <label for="currentTrue">current</label>
+            <input type="radio" id="currentFalse" value="false" name="current">
+            <label for="currentFalse">expired</label><br>
+        </div>
+    </div>
+    <div class="content mainContent">
+        <p id="searchResultTitle"></p>
+        <dl class="displayItems" id="mySchedule"></dl>
+        <div class="loadMoreContent clickable" id="moreEventsButton">Load More</div>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

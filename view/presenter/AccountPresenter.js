@@ -111,4 +111,16 @@ export default class{
             return "this user is already in your friend list";
         }
     }
+
+    getCurrentSchedule(username){
+        let schedule = this._accountManager.viewSignedUpEvents(username)[0];
+
+        let output = "";
+        for (const [key, value] of Object.entries(schedule)){
+            output += "[" + key + "] " + value[2] + "<br>";
+            output += "from " + value[0].toLocaleString() + " to " + value[1].toLocaleString() + "<br><br>";
+        }
+
+        return output;
+    }
 }

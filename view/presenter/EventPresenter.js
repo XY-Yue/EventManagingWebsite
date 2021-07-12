@@ -1,4 +1,5 @@
 import EventManager from "./model/event/EventManager.js";
+import {_formatEventsIntoHTML} from "./EventParserToHTML.js";
 
 /**
  * Operates on events, mainly requesting data and sending them to some view.
@@ -29,9 +30,9 @@ export default class{
         this._allEvents = this._eventManager.searchEventSchedule(vip, current, nameKey, location, start,
             end, type, speakers);
 
-        this._curCount = 1;
+        this._curCount = 10;
 
-        return this._formatEventsIntoHTML(this._allEvents.slice(0, 10));
+        return _formatEventsIntoHTML(this._allEvents.slice(0, 10));
     }
 
     /**
@@ -45,49 +46,11 @@ export default class{
         }
     }
 
-    // helper to format given events into HTML <dl> elements
-    _formatEventsIntoHTML(events){
-        let output = "";
-        for (let i = 0; i < events.length; i++){
-            output += this._formatEventIntoHTML(events[i]);
-        }
-        return output;
-    }
-
-    // helper to format a single event into a HTML <dl> element, where name is <dt> and details are in <dd>
-    _formatEventIntoHTML(event){
-        let output = "";
-
-        output += "<dt id='" + event._ID + "'>";
-        if (event._isVIP){
-            output += "[VIP] ";
-        }
-        output += event._name;
-        output += "</dt>";
-
-        output += "<dd>";
-        output += "Type: " + event._type;
-        output += "</dd>";
-
-        output += "<dd>";
-        output += "Location: " + event._location;
-        output += "</dd>";
-
-        output += "<dd>";
-        output += event._start.toLocaleString() + "  to  " + event._end.toLocaleString();
-        output += "</dd>";
-
-        output += "<dd>";
-        output += event._description;
-        output += "</dd>";
-
-        this._curCount ++;
-
-        return output;
-    }
-
     getMoreEvents(){
-        return this._formatEventsIntoHTML(this._allEvents.slice(this._curCount - 1, this._curCount + 9));
+        let output = _formatEventsIntoHTML(this._allEvents.slice(this._curCount - 1, this._curCount + 9));
+        this._curCount += 10;
+
+        return output;
     }
 
 }

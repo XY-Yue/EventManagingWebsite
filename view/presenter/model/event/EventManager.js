@@ -585,5 +585,11 @@ export default class{
         }
     }
 
-
+    getEvent(eventID){
+        let event = this._findEvent(eventID);
+        if (event == null) return null;
+        else {
+            return JSON.parse(JSON.stringify(event));
+        }
+    }
 }

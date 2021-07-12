@@ -1,5 +1,6 @@
 import EventPresenter from "./presenter/EventPresenter.js";
 import {updateListener, addMoreContent} from "./EventDisplayer.js";
+import AccountPresenter from "./presenter/AccountPresenter.js";
 
 // This view corresponds to MainPage
 
@@ -18,6 +19,19 @@ if (document.getElementById("popularEvents").innerHTML === ""){
         updateListener();
     }
 }
+
+let curUser = sessionStorage.getItem("curAccount");
+if (curUser != null){
+    let userEvents = new AccountPresenter().getCurrentSchedule(curUser);
+    if (userEvents !== ""){
+        document.getElementById("userEvents").innerHTML = "Your up coming events: <br>"
+        document.getElementById("userEvents").innerHTML += userEvents;
+    }else {
+        document.getElementById("userEvents").innerHTML = "No events scheduled!"
+    }
+
+}
+
 
 // A helper function to call addMoreContent, avoids duplicated code
 function callAddMoreContent(){

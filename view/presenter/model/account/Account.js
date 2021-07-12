@@ -85,13 +85,19 @@ export default class {
     }
 
     /**
-     * Gets all the signed events of this account.
-     * @return schedule which contains event id representing all the signed events along with their time
+     * Gets all the signed up events of this account.
+     * @return array of [current events, expired events], each is a map {eventID : [start time, end time, event name]}
+     * representing all events this user registered
      */
     get schedule(){
-        let output = {};
+        let current = {}, expired = {};
+        let output = [current, expired];
         for (const [key, value] of Object.entries(this._schedule)){
-            output[key] = Array.from(value);
+            if (value[0].getTime() > new Date().getTime()){
+                current[key] = Array.from(value);
+            }else {
+                expired[key] = Array.from(value);
+            }
         }
         return output;
     }
