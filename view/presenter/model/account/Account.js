@@ -15,8 +15,8 @@ export default class {
         this._name = name;
         this._password = password;
         this._friends = [];
-        this._schedule = []; // will be the same format as the one in Room
-        this._message = []; // will be in format {messageStatus: [all messageID with this status], ...}
+        this._schedule = {}; // will be the same format as the one in Room
+        this._message = {}; // will be in format {messageStatus: [all messageID with this status], ...}
         this._type = type; // This helps decode JSON data into a correct account type
     }
 
@@ -164,6 +164,8 @@ export default class {
     updateMessageList(key, messageId){
         if (this._message.hasOwnProperty(key) && this._message[key] != null){
             this._message[key].push(messageId);
+        }else {
+            this._message[key] = [messageId];
         }
     }
 

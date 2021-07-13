@@ -326,10 +326,11 @@ export default class{
      */
     updateMessageList(username, key, messageId){
         let account = this._findAccountByUsername(username);
-
+        console.log(username);
         if (account == null) {
             return null;
         }
+
         account.updateMessageList(key, messageId);
         this._storeData();
     }

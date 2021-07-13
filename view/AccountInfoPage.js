@@ -8,8 +8,10 @@ if (userName === ""){
     userName = curAcc;
     if (userName != null){
         isSelf = true;
+    }else {
+        window.open("MainPage.html", "_self");
     }
-}else {
+} else {
     userName = userName.split("=")[1];
     isSelf = false;
 }

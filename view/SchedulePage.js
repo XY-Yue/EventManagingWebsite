@@ -2,8 +2,13 @@ import AccountEventPresenter from "./presenter/AccountEventPresenter.js";
 import {updateListener} from "./EventDisplayer.js";
 
 var curAcc = sessionStorage.getItem("curAccount");
+
+if (sessionStorage.getItem("curAccount") == null) {
+    window.open("MainPage.html", "_self");
+}
+
 var eventAccount = new AccountEventPresenter(curAcc);
-eventAccount.getFullSchedule();
+eventAccount.getFullSchedule(); // First let the presenter to get the full schedule
 
 document.getElementById("moreEventsButton").addEventListener("click", addMoreContent);
 document.getElementById("moreEventsButton").style.display = "none";

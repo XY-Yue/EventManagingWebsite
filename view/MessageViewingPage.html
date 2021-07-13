@@ -5,6 +5,7 @@
     <title>Your Messages</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="MessageViewingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,24 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content sideContent">
+        <h1>Apply Filters:</h1>
+        <div class="searchField">
+            <label for="subject">Subject: </label><br>
+            <input class="searchBar sideSearchBar" type="text" id="subject"
+                   name="roomName" placeholder="enter keyword in subject to search"><br>
+        </div>
+
+    </div>
+    <div class="content mainContent">
+        <button class="topButton clickable" id="sendMessage">Send Message</button>
+        <h2>Your Messages: </h2>
+        <dl class="displayEvents" id="messageList"></dl>
+        <div class="loadMoreContent clickable" id="moreMessagesButton">Load More</div>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

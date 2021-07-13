@@ -1,4 +1,5 @@
 import RoomManager from "./model/room/RoomManager.js";
+import {formatToCheckbox} from "./FormatToCheckbox.js";
 
 /**
  * Handles View's events by communicating with model and return data to views
@@ -114,7 +115,7 @@ export default class {
         let output = "";
 
         for (let i = 0; i < features.length; i++){
-            output += formatToCheckbox(features[i]);
+            output += formatToCheckbox(features[i], "feature");
         }
 
         return output;
@@ -131,7 +132,7 @@ export default class {
             return "";
         }else {
             this._roomManager.addFeature(feature);
-            return formatToCheckbox(feature);
+            return formatToCheckbox(feature, "feature");
         }
     }
 
@@ -186,11 +187,4 @@ export default class {
         }
         return output;
     }
-}
-
-
-// Format the input string as the value and label of a <input> element of type checkbox
-function formatToCheckbox(input){
-    return "<input type=\"checkbox\" id=\"" + input + "\" name=\"feature\" value=\"" + input + "\">" +
-        "<label for=\"" + input + "\">" + input + "</label><br>"
 }

@@ -5,6 +5,7 @@
     <title>Send Message</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="MessageSendingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,28 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <label for="subject">Subject: </label><br>
+        <input class="userInputField" type="text" id="subject"
+               name="subject" placeholder="Enter subject here..."><br>
+        <label for="receivers">Receivers (no space): </label><br>
+        <input class="userInputField" type="text" id="receivers"
+               name="receivers" placeholder="Have multiple receivers by receiver1,receiver2,receiver3...">
+        <p id="chooseFriendsLabel">or select friends as receivers
+            (so that you do not need to enter their username above)</p>
+        <div class="chooseFeature" id="friends">
+        </div>
+        <br>
+        <label for="content">Content: </label><br>
+        <textarea class="bigInputBox" id="content"
+                  name="content" placeholder="Enter message content here..."></textarea><br>
+
+        <p id="invalidInputWarning" class="warning"></p><br>
+        <button class="submitButton clickable" id="continue">Send</button>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

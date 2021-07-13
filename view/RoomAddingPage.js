@@ -4,6 +4,10 @@ import {extractCheckboxResult} from "./InputParser.js";
 const SELECTED = "forestgreen";
 const NOT_SELECTED = "white";
 
+if (sessionStorage.getItem("curAccount") == null) {
+    window.open("MainPage.html", "_self");
+}
+
 // Sets onClick listeners and some starting styles
 document.getElementById("features").innerHTML += new RoomPresenter().allFeatures();
 document.getElementById("ADD").addEventListener("click", addFeatureConfirm);

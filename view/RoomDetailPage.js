@@ -2,7 +2,14 @@ import RoomPresenter from "./presenter/RoomPresenter.js";
 import {extractCheckboxResult} from "./InputParser.js";
 
 // First extract the room name from query text in URL
-var roomName = window.location.search.split("=")[1];
+var roomName = window.location.search.toString();
+
+if (roomName === "") {
+    window.open("MainPage.html", "_self");
+}else {
+    roomName = roomName.split("=")[1];
+}
+
 document.getElementById("title").innerHTML = roomName;
 fillRoomInfo();
 document.getElementById("featureAdder").style.display = "none";
