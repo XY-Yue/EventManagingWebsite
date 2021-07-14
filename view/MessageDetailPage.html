@@ -5,6 +5,7 @@
     <title>View Message Detail</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
   <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module" src="MessageDetailPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,47 @@
     $("#navBar").replaceWith(data);
   });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <button class="topButtonRed clickable" id="delete">Delete Message</button>
+        <h1 id="subject"></h1>
+        <table class="displayDetailTable">
+            <tr>
+                <td class="fieldName">Sent at: </td>
+                <td class="fieldValue">
+                    <div id="time">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Sender: </td>
+                <td class="fieldValue">
+                    <div id="sender">
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="receiverField">
+                <td class="fieldName">Receivers: </td>
+                <td class="fieldValue">
+                    <div id="receivers">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Content: </td>
+                <td class="fieldValue">
+                    <div id="content">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

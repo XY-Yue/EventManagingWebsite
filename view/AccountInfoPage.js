@@ -13,7 +13,7 @@ if (userName === ""){
     }
 } else {
     userName = userName.split("=")[1];
-    isSelf = false;
+    isSelf = curAcc != null && userName === curAcc;
 }
 document.getElementById("title").innerHTML = userName + "'s profile page";
 

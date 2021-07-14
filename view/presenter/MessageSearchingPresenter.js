@@ -20,7 +20,6 @@ export default class {
      */
     searchMessage(status, keywordUsername, keywordSubject){
         let messageIDs = this._accountManager.getMessageList(this._username, status);
-        let output = "";
         this._messages = [];
         this._curCount = 0;
         this._needReceivers = false;
@@ -58,6 +57,33 @@ export default class {
         }
         this._curCount += 10;
         return output;
+    }
+
+    getSingleMessage(messageID, username){
+        let message = this._messageManager.getSingleMessage(messageID);
+        let output = {};
+
+        output.subject = message._subject;
+        output.content = message._wordContent;
+        output.time = message._time.toLocaleString();
+        output.sender = "<a href='AccountInfoPage.html?name=" + message._sender + "'>" + message._sender + "</a>";
+
+        if (this._accountManager.isValidMessageId(username, messageID, messageStatus.sent)){
+            output.receiver = "";
+            for (let i = 0; i < message._receiver.length; i++){
+                output.receiver += "<a href='AccountInfoPage.html?name=" + message._receiver[i] + "'>" +
+                    message._receiver[i] + "</a>; ";
+            }
+        }
+
+        return output;
+    }
+
+    deleteMessage(messageID, username){
+        if (confirm("Delete this message?")) {
+            this._accountManager.removeFromMessageList(username, messageID);
+            window.open("MessageViewingPage.html", "_self");
+        }
     }
 }
 

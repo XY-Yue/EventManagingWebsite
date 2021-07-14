@@ -73,7 +73,7 @@ function getMoreMessages(){
 
 // Respond to user click event on the subject of a message to view its details
 function viewElementDetails(){
-    window.open("MessageDetailPage.html?id=" + this.id);
+    window.open("MessageDetailPage.html?id=" + this.id, "_self");
 }
 
 // Sets the on click listeners to all message subjects

@@ -123,4 +123,8 @@ export default class{
 
         return id;
     }
+
+    getSingleMessage(messageID){
+        return JSON.parse(JSON.stringify(this._messageList[messageID]), reviver);
+    }
 }

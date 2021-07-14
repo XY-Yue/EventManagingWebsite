@@ -339,17 +339,16 @@ export default class{
     /**
      * Removes the message id from a message list with given username and given key
      * @param username A String representation of the username
-     * @param key A String representation of the message status
      * @param messageId A String representation of the message id
      */
-    removeFromMessageList(username, key, messageId){
+    removeFromMessageList(username, messageId){
         let account = this._findAccountByUsername(username);
 
         if (account == null) {
             return null;
         }
 
-        account.removeFromMessageList(username, key);
+        account.removeFromMessageList(messageId);
         this._storeData();
     }
 

@@ -126,6 +126,21 @@ body {
     background-color: forestgreen;
 }
 
+.topButtonRed {
+    height: 30px;
+    width: 20%;
+    background-color: darkred;
+    color: white;
+    border: 1px solid black;
+    float: right;
+    margin: 5px;
+    display: inline;
+}
+
+.topButtonRed:hover {
+    background-color: firebrick;
+}
+
 .chooseAvailableTime {
     width: 50%;
     max-height: 2cm;
@@ -212,4 +227,9 @@ body {
     margin: 5px;
     height: 3cm;
     resize: none;
+}
+
+.fieldValue {
+    word-break: break-all;
+    white-space: normal;
 }

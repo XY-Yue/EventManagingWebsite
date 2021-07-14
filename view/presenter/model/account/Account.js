@@ -170,16 +170,16 @@ export default class {
     }
 
     /**
-     * Removes a message from a message list with a given key
-     * @param key A String representation of the message status
+     * Removes all occurrence of a message from a message list
      * @param messageId A String representation of the message id
      */
-    removeFromMessageList(key, messageId){
-        if (this._message.hasOwnProperty(key) && this._message[key] != null){
-            for (let i = 0; i < this._message[key].length; i++){
-                if (this._message[key][i] === messageId) {
-                    this._message[key].splice(i, 1)
-                    return;
+    removeFromMessageList(messageId){
+        for (let [key, value] of Object.entries(this._message)){
+            for (let i = 0; i < value.length; i++){
+                console.log()
+                if (value[i] === messageId) {
+                    value.splice(i, 1);
+                    break;
                 }
             }
         }
