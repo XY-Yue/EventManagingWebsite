@@ -46,6 +46,10 @@ export default class{
         }
     }
 
+    /**
+     * Provides more events information formatted as <dd> and <dt> elements
+     * @return string formatted as HTML <dl> elements, representing next 10 resulting events
+     */
     getMoreEvents(){
         let output = _formatEventsIntoHTML(this._allEvents.slice(this._curCount - 1, this._curCount + 9));
         this._curCount += 10;

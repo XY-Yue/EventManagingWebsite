@@ -103,6 +103,12 @@ export default class{
         }
     }
 
+    /**
+     * Adds the friend to the user's friend list
+     * @param selfUsername the target account that tries to add friend
+     * @param friendUsername the friend's username to be added into the target account
+     * @return string representing the result/error message
+     */
     addFriend(selfUsername, friendUsername){
         let outcome = this._accountManager.addFriend(selfUsername, friendUsername);
         if (outcome) {
@@ -112,6 +118,11 @@ export default class{
         }
     }
 
+    /**
+     * Gets the schedule of all up coming events of the username's account
+     * @param username the target account's username
+     * @return string representing all up coming events that can be added into HTML to display
+     */
     getCurrentSchedule(username){
         let schedule = this._accountManager.viewSignedUpEvents(username)[0];
 

@@ -170,7 +170,8 @@ export default class {
         let schedule = "";
         for (const [key, value] of Object.entries(room._schedule)){
             if (value[1].getTime() > new Date().getTime()){
-                schedule += key + ": " + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
+                schedule += key + ": <a href='../EventSignUpPage.html?id=" + key + "'></a>"
+                    + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
             }
         }
         room._schedule = schedule;
@@ -178,6 +179,12 @@ export default class {
         return room;
     }
 
+    /**
+     * Adds features to the room
+     * @param roomName name of the target room
+     * @param features an array of features to be added to the room
+     * @return string containing all new features that are finally added into the room
+     */
     addFeatureToRoom(roomName, features){
         let result = this._roomManager.addFeatureToRoom(roomName, features);
 

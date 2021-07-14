@@ -114,6 +114,11 @@ export default class {
         return true;
     }
 
+    /**
+     * Adds given features to the room, only adds the ones that are not already present
+     * @param features an array of features to be added
+     * @return array representing all features that are finally added
+     */
     addFeatures(features){
         let added = [];
         for (let i = 0; i < features.length; i++){

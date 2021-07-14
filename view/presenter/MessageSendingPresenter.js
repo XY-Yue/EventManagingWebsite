@@ -3,12 +3,24 @@ import AccountManager from "./model/account/AccountManager.js";
 import {messageStatus} from "./MessageStatus.js";
 import {formatToCheckbox} from "./FormatToCheckbox.js";
 
+/**
+ * Responsible for sending messages and providing all information necessary to message sending
+ */
 export default class {
     constructor() {
         this._messageManager = new MessageManager();
         this._accountManager = new AccountManager();
     }
 
+    /**
+     * Sends a message with the given input, checks validity of the input first
+     * @param sender sender of the message
+     * @param receivers all receivers entered as text, a string
+     * @param receiverFriends all receivers in the friend list, extracted from checkbox, an array
+     * @param subject subject of the message, a string
+     * @param content content of the message, a string
+     * @return string representing the result, empty means success, otherwise it is an error message
+     */
     sendMessage(sender, receivers, receiverFriends, subject, content){
         let allReceivers = this._parseReceivers(receivers, receiverFriends);
 
@@ -43,6 +55,7 @@ export default class {
         return "";
     }
 
+    // Take in both the string receiver and friend list receivers, parse them into a single array of unique usernames
     _parseReceivers(receivers, receiverFriends){
         let set = new Set();
 
@@ -60,6 +73,11 @@ export default class {
         return Array.from(set);
     }
 
+    /**
+     * Formats all username's friends' username into checkbox inputs
+     * @param username of the target account
+     * @return string with HTML elements that can be directly inserted to become a checkbox form
+     */
     getAllFriends(username){
         let friends = this._accountManager.getFriendList(username);
         let output = "";

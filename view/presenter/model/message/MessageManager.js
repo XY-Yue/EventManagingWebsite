@@ -1,38 +1,6 @@
 import WordMessage from "./WordMessage.js";
 import reviver from "../reviver.js";
 
-/**
- * format the output of the given message, return its information with all receivers included
- * @param message the target message
- * @return toString of message, with sender, receiver and time sent
- */
-function formatMessageOutputWithReceivers(message) {
-    let result = "";
-    result += 'sender: ' + message.sender + ';\n';
-    result += 'receiver: '
-    let receiver;
-    for (receiver in message.receiver) {
-        result += receiver + '; ';
-    }
-    result += '\n';
-    result += 'sent at: ' + message.time.toLocaleString() + ';\n';
-    result += message.toString();
-    return result;
-}
-
-/**
- * format the output of the given message, return its information without all receivers included
- * @param message the target message
- * @return toString of message, with sender and time sent
- */
-function formatMessageOutputWithoutReceivers(message) {
-    let result = "";
-    result += 'sender: ' + message.sender + ';\n';
-
-    result += 'sent at: ' + message.time.toLocaleString() + ';\n';
-    result += message.toString();
-    return result;
-}
 
 /**
  * An use case class of messaging feature.
@@ -78,17 +46,18 @@ export default class{
     /**
      * Returns the all the messages sent by the user with given IDs.
      * Get a list of messages by getting the list of messages the given IDs corresponds to in messageList.
-     * The result should be in view of user with given username, so the toString should contain all receivers
+     * The result should be in view of user with given username, so the output should contain all receivers
      * @param messageSent a list of message sent by a user
+     * @param subjectKeyword A keyword in the subject of desired messages
      * @return list of toString of messages with IDs contained in the given list
      */
-    getSentMessages(messageSent){
+    getMessages(messageSent, subjectKeyword){
         let output = [];
 
-        for (let id in messageSent){
-            if (this._messageList.hasOwnProperty(id) && this._messageList[id] != null){
-                output.push(formatMessageOutputWithReceivers(
-                    JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
+        for (let i = 0; i < messageSent.length; i++){
+            if (this._messageList.hasOwnProperty(messageSent[i]) && this._messageList[messageSent[i]] != null &&
+            this._messageList[messageSent[i]].subject.includes(subjectKeyword)){
+                output.push(JSON.parse(JSON.stringify(this._messageList[messageSent[i]]), reviver));
             }
         }
         return output;
@@ -98,17 +67,17 @@ export default class{
      * Gets the message sent to a specific user
      * @param receiverUsername A String representation of receiver username
      * @param messageSent a list of message ids sent by the current user
+     * @param subjectKeyword A keyword in the subject of desired messages
      * @return list of String representation of the message sent to the given username
      */
-    getSentMessageToSpecificAccount(receiverUsername, messageSent){
+    getSentMessageToSpecificAccount(receiverUsername, messageSent, subjectKeyword){
         let output = [];
-        let id;
 
-        for (id in messageSent){
-            if (this._messageList.hasOwnProperty(id) && this._messageList[id] != null){
-                if (this._messageList[id].receiver.includes(receiverUsername)){
-                    output.push(formatMessageOutputWithReceivers(
-                        JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
+        for (let i = 0; i < messageSent.length; i++){
+            if (this._messageList.hasOwnProperty(messageSent[i]) && this._messageList[messageSent[i]] != null){
+                if (this._messageList[messageSent[i]].receiver.includes(receiverUsername) &&
+                    this._messageList[messageSent[i]].subject.includes(subjectKeyword)){
+                    output.push(JSON.parse(JSON.stringify(this._messageList[messageSent[i]]), reviver));
                 }
             }
         }
@@ -119,60 +88,17 @@ export default class{
      * Gets the message received from a specific account
      * @param senderUsername A String representation of the sender username
      * @param messageReceived A list of message id received by current user
+     * @param subjectKeyword A keyword in the subject of desired messages
      * @return list of received messages from the sender, without the receiver information
      */
-    getReceivedMessagesFromSpecificAccount(senderUsername, messageReceived){
+    getReceivedMessagesFromSpecificAccount(senderUsername, messageReceived, subjectKeyword){
         let output = [];
-        let id;
 
-        for (id in messageReceived){
-            if (this._messageList.hasOwnProperty(id) && this._messageList[id] != null){
-                if (this._messageList[id].sender === senderUsername){
-                    output.push(formatMessageOutputWithoutReceivers(
-                        JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
-                }
-            }
-        }
-        return output;
-    }
-
-    /**
-     * Gets the message received from a user, based on the provided list
-     * @param messageReceived A list of message id received by current user
-     * @return list of received messages from all other accounts
-     */
-    getReceivedMessages(messageReceived){
-        let output = [];
-        let id;
-
-        for (id in messageReceived){
-            if (this._messageList.hasOwnProperty(id) && this._messageList[id] != null){
-                output.push(formatMessageOutputWithoutReceivers(
-                    JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
-            }
-        }
-        return output;
-    }
-
-    /**
-     * Gets the archived message of current account
-     * @param messageArchived A list of message id archived
-     * @return list of archived messages
-     */
-    getArchivedMessages(messageArchived){
-        let output = [];
-        let id;
-
-        for (id in messageArchived){
-            let status = id.charAt(0);
-            id = id.substring(1);
-            if (this._messageList.hasOwnProperty(id) && this._messageList[id] != null){
-                if (status === '0'){ // 0 means the message was received by this user before being archived
-                    output.push(formatMessageOutputWithoutReceivers(
-                        JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
-                }else if (status === '1'){ // 1 means this message was sent by this user before being archived
-                    output.push(formatMessageOutputWithReceivers(
-                        JSON.parse(JSON.stringify(this._messageList[id]), reviver)));
+        for (let i = 0; i < messageReceived.length; i++){
+            if (this._messageList.hasOwnProperty(messageReceived[i]) && this._messageList[messageReceived[i]] != null &&
+                this._messageList[messageReceived[i]].subject.includes(subjectKeyword)){
+                if (this._messageList[messageReceived[i]].sender === senderUsername){
+                    output.push(JSON.parse(JSON.stringify(this._messageList[messageReceived[i]]), reviver));
                 }
             }
         }

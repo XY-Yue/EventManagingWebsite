@@ -315,6 +315,7 @@ export default class{
         if (account == null) {
             return null;
         }
+
         return account.getMessageList(key);
     }
 
@@ -365,7 +366,7 @@ export default class{
         if (account == null) {
             return false;
         }
-        return account.getMessageList(key).lastIndexOf(messageId) !== -1;
+        return account.getMessageList(key).includes(messageId);
     }
 
     /**

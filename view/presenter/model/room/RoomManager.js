@@ -224,6 +224,12 @@ export default class{
         this._storeData();
     }
 
+    /**
+     * Adds all features to roomName's room
+     * @param roomName the name of the target room
+     * @param features the features to be added
+     * @return array of features that are finally added
+     */
     addFeatureToRoom(roomName, features){
         let room = this._findRoom(roomName);
         if (room != null){

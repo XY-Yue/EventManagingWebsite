@@ -9,6 +9,9 @@ export default class {
         this._username = username;
     }
 
+    /**
+     * Gets all event in the schedule of the username's account in this._username, storing them to prepare for output
+     */
     getFullSchedule(){
         let schedule = this._accountManager.viewSignedUpEvents(this._username);
         this._numCurrent = 1;
@@ -26,6 +29,10 @@ export default class {
         this._schedule = [current, expired];
     }
 
+    /**
+     * Provides more current events information formatted as <dd> and <dt> elements
+     * @return string formatted as HTML <dl> elements, representing next 10 current events the account
+     */
     getMoreCurrent(){
         this._numExpired = 1;
         let output = _formatEventsIntoHTML(this._schedule[0].slice(this._numCurrent - 1, this._numCurrent + 9));
@@ -34,6 +41,10 @@ export default class {
         return output;
     }
 
+    /**
+     * Provides more expired events information formatted as <dd> and <dt> elements
+     * @return string formatted as HTML <dl> elements, representing next 10 expired events for the account
+     */
     getMoreExpired(){
         this._numCurrent = 1;
         let output = _formatEventsIntoHTML(this._schedule[1].slice(this._numExpired - 1, this._numExpired + 9));

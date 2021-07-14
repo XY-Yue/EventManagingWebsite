@@ -20,16 +20,31 @@
     <div class="content sideContent">
         <h1>Apply Filters:</h1>
         <div class="searchField">
-            <label for="subject">Subject: </label><br>
-            <input class="searchBar sideSearchBar" type="text" id="subject"
-                   name="roomName" placeholder="enter keyword in subject to search"><br>
+            Message Status:<br>
+            <input type="radio" id="sent" value="sent" name="messageStatus">
+            <label for="sent">sent</label>
+            <input type="radio" id="received" value="received" name="messageStatus">
+            <label for="received">received</label><br>
         </div>
 
+        <div class="searchField">
+            <label for="senderAndReceiver" id="usernameField">Sender: </label><br>
+            <input class="searchBar sideSearchBar" type="text" id="senderAndReceiver"
+                   name="senderAndReceiver" placeholder="enter sender's full username to search"><br>
+        </div>
+
+        <div class="searchField">
+            <label for="subject">Subject: </label><br>
+            <input class="searchBar sideSearchBar" type="text" id="subject"
+                   name="subject" placeholder="enter keyword in subject to search"><br>
+        </div>
+
+        <button class="clickable loadMoreContent" id="applyFilters">Apply</button>
     </div>
     <div class="content mainContent">
         <button class="topButton clickable" id="sendMessage">Send Message</button>
         <h2>Your Messages: </h2>
-        <dl class="displayEvents" id="messageList"></dl>
+        <dl class="displayItems" id="messageList"></dl>
         <div class="loadMoreContent clickable" id="moreMessagesButton">Load More</div>
     </div>
 </div>

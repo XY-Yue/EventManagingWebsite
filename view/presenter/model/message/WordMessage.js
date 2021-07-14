@@ -23,11 +23,7 @@ export default class extends Message{
         this._wordContent = wordContent;
     }
 
-    /**
-     * Provides string representations of the subject and the content
-     * @return the subject + content
-     */
-    toString(){
-        return this._subject + '\n' + this._wordContent;
+    get subject(){
+        return this._subject;
     }
 }
