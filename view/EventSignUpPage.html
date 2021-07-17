@@ -5,6 +5,7 @@
     <title>Join The Event</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module", src="EventSignUpPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,55 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <button class="topButtonRed clickable" id="signUp">Sign Up</button>
+        <h1 id="name"></h1>
+        <table class="displayDetailTable">
+            <tr>
+                <td class="fieldName">Location: </td>
+                <td class="fieldValue">
+                    <div id="Location">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Time: </td>
+                <td class="fieldValue">
+                    <div id="time">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Capacity: </td>
+                <td class="fieldValue">
+                    <div id="capacity">
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="receiverField">
+                <td class="fieldName">Hosts: </td>
+                <td class="fieldValue">
+                    <div id="hosts">
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="fieldName">Description: </td>
+                <td class="fieldValue">
+                    <div id="description">
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

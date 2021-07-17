@@ -5,6 +5,7 @@
     <title>Create Event</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
     <link rel="stylesheet" href="MainStyle.css"/>
+    <script type="module", src="EventCreatingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -14,6 +15,120 @@
         $("#navBar").replaceWith(data);
     });
 </script>
+
+<div class="contentBox">
+    <div class="content fullContent">
+        <h1>Add a new event:</h1>
+        <label for="type">Type of event: </label><br>
+        <select id="type" name="type" class="userInputField">
+        </select><br>
+
+        <div class="userInputField">
+            VIP event?<br>
+            <input type="radio" id="vipTrue" value="true" name="vip">
+            <label for="vipTrue">vip</label>
+            <input type="radio" id="vipFalse" value="false" name="vip">
+            <label for="vipFalse">non-vip</label>
+        </div><br>
+        <br>
+        <label for="eventName">Event Name: </label><br>
+        <input class="userInputField" type="text" id="eventName"
+               name="eventName" placeholder="Enter event name here..."><br>
+
+        <label for="capacity">Capacity: </label><br>
+        <input class="userInputField" type="number" id="capacity" min="1" value="100"
+               name="capacity" placeholder="Enter capacity of the room here..."><br>
+        <br>
+        <div class="userInputField">
+            Start Time:<br>
+            <label for="startDate">Start Date</label>
+            <input type="date" id="startDate" name="start"><br>
+            <label for="startHour">Start Hour</label>
+            <select id="startHour" name="start">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select><br>
+        </div>
+        <br>
+        <div class="userInputField">
+            End Time:<br>
+            <label for="endDate">End Date</label>
+            <input type="date" id="endDate" name="end"><br>
+            <label for="endHour">End Hour</label>
+            <select id="endHour" name="end">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select><br>
+        </div>
+        <br>
+        Choose Required Features:
+        <div class="chooseFeature" id="features">
+        </div>
+        <br>
+
+        Choose Room:
+        <div class="chooseFeature" id="roomChoice">
+            Enter start and finish time to see available rooms...
+        </div>
+        <br>
+
+        Choose Speaker:
+        <div class="chooseFeature" id="speakerChoice">
+            Enter start and finish time to see available speakers...
+        </div>
+        <br>
+
+        <label for="description">Description: </label><br>
+        <textarea class="bigInputBox" id="description"
+                  name="description" placeholder="Enter a description here..."></textarea><br>
+
+        <button class="submitButton clickable" id="continue">Create Event</button>
+    </div>
+</div>
 
 <div id="footer"></div>
 <script>

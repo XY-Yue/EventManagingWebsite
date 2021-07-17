@@ -1,7 +1,7 @@
 import MessageManager from "./model/message/MessageManager.js";
 import AccountManager from "./model/account/AccountManager.js";
 import {messageStatus} from "./MessageStatus.js";
-import {formatToCheckbox} from "./FormatToCheckbox.js";
+import {formatToCheckbox} from "./FormatToOptions.js";
 
 /**
  * Responsible for sending messages and providing all information necessary to message sending

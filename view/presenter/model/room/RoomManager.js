@@ -89,10 +89,16 @@ export default class{
         let output = [];
         for (const [name, room] in Object.entries(this._roomList)){
             if (room.capacity >= capacity){
-                if (room.isValidTimeSlot(start.getHours(), end.getHours())){
-                    if (room.available(start, end)){
-                        if (room.hasFeatures(features)){
-                            output.push(name);
+                if (room.available(start, end)){
+                    if (room.hasFeatures(features)){
+                        if (end.getTime() - start.getTime() >= 86400000) { // the durations is over a day
+                            if (room.isValidTimeSlot(0, 24)){
+                                output.push(name);
+                            }
+                        }else {
+                            if (room.isValidTimeSlot(start.getHours(), end.getHours())){
+                                output.push(name);
+                            }
                         }
                     }
                 }

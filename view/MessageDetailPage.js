@@ -12,9 +12,9 @@ if (curAccount == null || messageID === "") {
     presenter = new MessageSearchingPresenter(curAccount);
     messageID = messageID.split("=")[1];
     document.getElementById("delete").addEventListener("click", deleteMessage);
-
+    // start the search and get the message object
     let message = presenter.getSingleMessage(messageID, curAccount);
-
+    // Fill in the data
     document.getElementById("subject").innerHTML = message.subject;
     document.getElementById("time").innerHTML = message.time;
     document.getElementById("content").innerHTML = message.content;
@@ -27,7 +27,7 @@ if (curAccount == null || messageID === "") {
     }
 }
 
-
+// Deletes a message from the current user's data
 function deleteMessage(){
     presenter.deleteMessage(messageID, curAccount);
 }

@@ -1,5 +1,5 @@
 import RoomManager from "./model/room/RoomManager.js";
-import {formatToCheckbox} from "./FormatToCheckbox.js";
+import {formatToCheckbox} from "./FormatToOptions.js";
 
 /**
  * Handles View's events by communicating with model and return data to views

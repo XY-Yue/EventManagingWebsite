@@ -438,24 +438,6 @@ export default class{
     }
 
     /**
-     * Gets available event id that user is free and can join
-     * @param m A list of [[eventId, [start, finish]], ...] that maps the event id to its duration
-     * @param username A String representation of account's username
-     * @return list of event id that user is free and can join
-     */
-    getAvailableEvent(m, username){
-        let result = [];
-
-        let event;
-        for (event in m){
-            if (this.freeAtTime(event[1][0], event[1][1], username)){
-                result.push(event[0]);
-            }
-        }
-        return result;
-    }
-
-    /**
      * Finds all speakers that are free at the given time interval
      * @param eventDuration Time intervals where start time is at index 0 and end time is index 1
      * @return list of speaker IDs that corresponds to speakers that are free at this time interval
@@ -469,18 +451,9 @@ export default class{
         let speakers = Object.values(this._allAccounts['speaker']);
 
         if (speakers != null && speakers !== []){
-            let speaker;
-            for (speaker in speakers){
-                let time;
-                let available = true;
-                for (time in eventDuration){
-                    if (!this.freeAtTime(time[0], time[1], speaker)){
-                        available = false;
-                        break;
-                    }
-                }
-                if (available){
-                    result.push(speaker.username);
+            for (let i = 0; i < speakers.length; i++){
+                if (speakers[i].isAvailable(eventDuration[0], eventDuration[1])){
+                    result.push(speakers[i]);
                 }
             }
         }

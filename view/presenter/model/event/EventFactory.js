@@ -21,12 +21,13 @@ export default class{
      * @return Event object created based on user input
      */
     makeEvent(type, name, start, end, location, description, capacity, id){
-        switch (type.toLowerCase()){
+        type = type.toLowerCase();
+        switch (type){
             case "talk":
                 return new Talk(name, id, location, description, capacity, start, end, type);
             case "party":
                 return new Party(name, id, location, description, capacity, start, end, type);
-            case "panel discussion":
+            case "discussion":
                 return new PanelDiscussion(name, id, location, description, capacity, start, end, type);
             default:
                 return null;

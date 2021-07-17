@@ -22,7 +22,9 @@ export default class{
 
         this._numEvents = this._readData("numEvents"); // keep track of number of events created so far,
                                                             // not current number of active events
-        this._eventType = ["talk", "party", "panel discussion"];
+        this._eventType = ["talk", "party", "discussion"];
+
+        this._desiredHostNumber = {talk: 1, party: 0, discussion: -1}
     }
 
     // Read data from local storage, used by constructor
@@ -45,12 +47,6 @@ export default class{
                     }
                 }
                 return value;
-                //
-                // for (let j = 0; j < value.length; j++){
-                //     for (let i = 0; i < value[j][1].length; i++){
-                //         value[j][1][i] = this._parseEvent(value[j][1][i]);
-                //     }
-                // }
             }
         }
     }
@@ -88,15 +84,6 @@ export default class{
             if (value.hasOwnProperty(id) && value[id] != null) return value[id];
         }
         return null;
-
-        // let events;
-        // for (events in this._eventList){
-        //     let event;
-        //     for (event in events[1]){
-        //         if (event.ID === id) return event;
-        //     }
-        // }
-        // return null;
     }
 
     _totalNumberOfEvents(){
@@ -220,45 +207,6 @@ export default class{
 
         this._storeData();
     }
-    //
-    // /**
-    //  * Gets all the events starts during the given period of time.
-    //  * @param start start of the time period
-    //  * @param end end of the time period
-    //  * @return all events start during the given period of time in format [[id, name], ...]
-    //  */
-    // getEventsByTime(start, end){
-    //     let time;
-    //     let output = [];
-    //     for (time in this._schedule){
-    //         if (time[0].getTime() >= start.getTime() && time[0].getTime() < end.getTime()){
-    //             let event;
-    //             for (event in time[1]){
-    //                 output.push([event[1], event[2]]);
-    //             }
-    //         }
-    //     }
-    //     return output;
-    // }
-    //
-    // /**
-    //  * Gets all the events are held in a given room.
-    //  * @param location the name of given room
-    //  * @return all events are held in the given room in format [[id, name], ...]
-    //  */
-    // getEventsByLocation(location){
-    //     let type;
-    //     let output = [];
-    //     for (type in this._eventList){
-    //         let event;
-    //         for (event in type[1]){
-    //             if (event.location === location){
-    //                 output.push([event.ID, event.name]);
-    //             }
-    //         }
-    //     }
-    //     return output;
-    // }
 
     /**
      * Adds a given user as attendee into the event with given id.
@@ -316,41 +264,6 @@ export default class{
     }
 
     /**
-     * Reschedules an event, change its start startTime to the given startTime.
-     * @param eventID id of the event we want to change startTime
-     * @param start time where event starts
-     * @param end time where event ends
-     * @return true if rescheduled successfully, else false
-     */ // TODO
-    // rescheduleEvent(eventID, start, end){
-    //     let event = this._findEvent(eventID);
-    //     if (event != null && event.start !== start){
-    //         let name = event.name;
-    //         let time;
-    //         for (time in this._schedule){
-    //             if (time[0] === event.start){
-    //                 let i;
-    //                 for (i = 0; i < time[1].length; i++){
-    //                     if (time[1][i][1] === eventID){
-    //                         time[1].splice(i, 1);
-    //                         break;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //         event.set
-    //         for (time in this._schedule){
-    //             if (time[0] === start){
-    //                 time[1].add([end, eventID, name]);
-    //                 return true;
-    //             }
-    //         }
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    /**
      * Cancels an event.
      * @param eventID id of the event we want to cancel
      * @return true iff canceled successfully
@@ -365,16 +278,6 @@ export default class{
 
                 this._storeData();
                 return true;
-
-                // let i;
-                // for (i = 0; i < type[1].length; i++){
-                //     if (type[1][i] === event){
-                //         type[1].splice(i, 1);
-                //
-                //         this._storeData();
-                //         return true;
-                //     }
-                // }
             }
         }
         return false;
@@ -590,6 +493,14 @@ export default class{
         if (event == null) return null;
         else {
             return JSON.parse(JSON.stringify(event));
+        }
+    }
+
+    getNumSpeakers(type){
+        if (this._desiredHostNumber.hasOwnProperty(type)){
+            return this._desiredHostNumber[type];
+        }else {
+            return -2;
         }
     }
 }

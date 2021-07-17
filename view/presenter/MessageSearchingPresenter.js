@@ -59,6 +59,12 @@ export default class {
         return output;
     }
 
+    /**
+     * Gets a single message data with the given ID
+     * @param messageID the ID of the target message
+     * @param username the username of the account requesting this data
+     * @return object that contains the message info parsed so that they can be displayed into HTML
+     */
     getSingleMessage(messageID, username){
         let message = this._messageManager.getSingleMessage(messageID);
         let output = {};
@@ -67,7 +73,7 @@ export default class {
         output.content = message._wordContent;
         output.time = message._time.toLocaleString();
         output.sender = "<a href='AccountInfoPage.html?name=" + message._sender + "'>" + message._sender + "</a>";
-
+        // If the user is not the sender, we should hide the receiver information for
         if (this._accountManager.isValidMessageId(username, messageID, messageStatus.sent)){
             output.receiver = "";
             for (let i = 0; i < message._receiver.length; i++){
@@ -79,6 +85,11 @@ export default class {
         return output;
     }
 
+    /**
+     * Removes a message from user's data
+     * @param messageID the ID of the target message
+     * @param username the username requesting this operation
+     */
     deleteMessage(messageID, username){
         if (confirm("Delete this message?")) {
             this._accountManager.removeFromMessageList(username, messageID);

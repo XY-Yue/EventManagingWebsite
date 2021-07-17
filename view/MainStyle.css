@@ -95,6 +95,7 @@ body {
 .userInputField {
     width: 35%;
     margin: 10px;
+    display: inline;
 }
 
 .submitButton {
