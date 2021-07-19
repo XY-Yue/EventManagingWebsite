@@ -24,6 +24,7 @@ For MVC pattern, I took a look at some examples of the pattern, but I fell like 
 where it only calls methods in the presenter when a event took place, and the presenter calls methods in view to update it. But some other examples does not keep the View
 that passive, where it processes user input first and then calls methods in presenter with the input. In my project, I tried to keep the view do as less things as possible.
 I am looking forward to gain a better understanding on MVC in the future.  
+Also, I made the project kind of in a rush, before a test and an assignment. I should definitly come back to this project later.
 
 ### What I learned from this project
 1. General web design experience, including experience on JS, HTML and CSS. Also includes using the tools such as query test to pass data, DOM to modify HTML and CSS and use local storage to store data.
