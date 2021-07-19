@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>My Account</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
-    <link rel="stylesheet" href="MainStyle.css"/>
-    <script type="module" src="AccountInfoPage.js"></script>
+    <link rel="stylesheet" href="src/MainStyle.css"/>
+    <script type="module" src="src/AccountInfoPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -18,7 +18,7 @@
 
 <div class="contentBox">
     <div class="content fullContent">
-        <button class="topButton clickable" id="addFriend">+ Add to friend list</button>
+        <button class="generalActionButton clickable" id="addFriend">+ Add to friend list</button>
         <h1 id="title"></h1>
         <table class="displayDetailTable">
             <tr>
@@ -32,7 +32,7 @@
             <tr id="passwordRow">
                 <td class="fieldName">Password: </td>
                 <td class="fieldValue">
-                    <button class="addFeature clickable" id="changePassword">Change Password</button>
+                    <button class="smallActionButton clickable" id="changePassword">Change Password</button>
                     <div id="passwordChanger" style="display: none">
                         <label for="oldPwd">Old password: </label>
                         <input class="userInputField" type="password" id="oldPwd"
@@ -42,7 +42,7 @@
                         <input class="userInputField" type="password" id="password"
                                name="password" placeholder="Enter password here...">
                         <p id="invalidPasswordWarning" class="warning"></p><br>
-                        <button class="addFeature clickable" id="applyPwdChange">Change</button>
+                        <button class="smallActionButton clickable" id="applyPwdChange">Change</button>
                     </div>
                 </td>
             </tr>
@@ -52,7 +52,7 @@
                     <div id="messages">
 
                     </div>
-                    <button class="addFeature clickable" id="viewMessage">View Messages</button>
+                    <button class="smallActionButton clickable" id="viewMessage">View Messages</button>
                 </td>
             </tr>
             <tr>
@@ -61,7 +61,7 @@
                     <div id="events">
 
                     </div>
-                    <button class="addFeature clickable" id="viewSchedule">View Schedule</button>
+                    <button class="smallActionButton clickable" id="viewSchedule">View Schedule</button>
                 </td>
             </tr>
             <tr id="specialList">

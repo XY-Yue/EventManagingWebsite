@@ -1,1 +1,0 @@
-import EventSignUpPresenter from "./presenter/EventSignUpPresenter.js";

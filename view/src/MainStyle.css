@@ -112,7 +112,7 @@ body {
     background-color: #aaa;
 }
 
-.topButton {
+.generalActionButton {
     height: 30px;
     width: 20%;
     background-color: darkgreen;
@@ -123,11 +123,11 @@ body {
     display: inline;
 }
 
-.topButton:hover {
+.generalActionButton:hover {
     background-color: forestgreen;
 }
 
-.topButtonRed {
+.generalActionButtonRed {
     height: 30px;
     width: 20%;
     background-color: darkred;
@@ -138,7 +138,7 @@ body {
     display: inline;
 }
 
-.topButtonRed:hover {
+.generalActionButtonRed:hover {
     background-color: firebrick;
 }
 
@@ -159,7 +159,7 @@ body {
     border: 1px solid gray;
 }
 
-.chooseFeature {
+.multipleChoiceBox {
     width: 20%;
     max-height: 5cm;
     overflow: scroll;
@@ -175,7 +175,7 @@ body {
     border: 1px solid gray;
 }
 
-.addFeature {
+.smallActionButton {
     height: 30px;
     width: 20%;
     background-color: darkgreen;
@@ -183,7 +183,7 @@ body {
     border: 1px solid black;
 }
 
-.addFeature:hover {
+.smallActionButton:hover {
     background-color: forestgreen;
 }
 

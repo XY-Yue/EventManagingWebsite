@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Add New Room</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
-  <link rel="stylesheet" href="MainStyle.css"/>
-    <script type="module" src="RoomAddingPage.js"></script>
+  <link rel="stylesheet" href="src/MainStyle.css"/>
+    <script type="module" src="src/RoomAddingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -58,10 +58,10 @@
         <p class="warning" id="availableWarning"></p><br>
 
         Choose Room Features:
-        <div class="chooseFeature" id="features">
+        <div class="multipleChoiceBox" id="features">
         </div>
 
-        <button class="clickable addFeature" id="addFeature">+ Add More Features</button><br>
+        <button class="clickable smallActionButton" id="smallActionButton">+ Add More Features</button><br>
 
         <label for="moreFeatures" id="moreFeaturesLabel" class="moreFeaturesInput">Enter a new feature:</label>
         <input type="text" id="moreFeatures" class="moreFeaturesInput" placeholder="Enter new features here...">

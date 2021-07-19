@@ -57,10 +57,10 @@ export default class{
             JSONObj._location, JSONObj._description, JSONObj._capacity, JSONObj._ID);
 
         event.isVIP = JSONObj._isVIP;
-        for (let attendee in JSONObj._attendee){
-            event.addAttendee(attendee);
+        for (let i = 0; i < JSONObj._attendee.length; i++){
+            event.addAttendee(JSONObj._attendee[i]);
         }
-        event.addRequiredFeatures(JSONObj._requiredFeatuires);
+        event.addRequiredFeatures(JSONObj._requiredFeatures);
         if (JSONObj.hasOwnProperty('_host')){
             let hosts = JSONObj._host;
 
@@ -141,8 +141,8 @@ export default class{
                     }
 
                     let found = speakers.length === 0;
-                    for (let speaker in event.host){ // For all speakers in event, check if this speaker is desired
-                        if (speakers.includes(speaker)){
+                    for (let i = 0; i < event.host.length; i++){ // For all speakers in event, check if this speaker is desired
+                        if (speakers.includes(event.host[i])){
                             found = true;
                             break;
                         }
@@ -486,19 +486,42 @@ export default class{
         }
     }
 
+    /**
+     * Gets the object representation of a event
+     * @param eventID the target event's ID
+     * @return object containing all information of the target event
+     */
     getEvent(eventID){
         let event = this._findEvent(eventID);
         if (event == null) return null;
         else {
-            return JSON.parse(JSON.stringify(event));
+            return JSON.parse(JSON.stringify(event), reviver);
         }
     }
 
+    /**
+     * Gets the number of speakers desired for the given type
+     * @param type the type of desired events
+     * @return number representing number of speakers needed, -1 means at least one
+     */
     getNumSpeakers(type){
         if (this._desiredHostNumber.hasOwnProperty(type)){
             return this._desiredHostNumber[type];
         }else {
             return -2;
+        }
+    }
+
+    /**
+     * Gets the name of the target event
+     * @param eventID the ID of the target event
+     * @return string representing the event's name
+     */
+    getEventName(eventID){
+        let event = this._findEvent(eventID);
+        if (event == null) return null;
+        else {
+            return event.name;
         }
     }
 }

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Room</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
-  <link rel="stylesheet" href="MainStyle.css"/>
-    <script type="module" src="RoomDetailPage.js"></script>
+  <link rel="stylesheet" href="src/MainStyle.css"/>
+    <script type="module" src="src/RoomDetailPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -42,14 +42,14 @@
                     <div id="features">
 
                     </div>
-                    <button class="clickable addFeature" id="addFeatureToRoom">+ Add</button><br>
+                    <button class="clickable smallActionButton" id="addFeatureToRoom">+ Add</button><br>
                     <br>
 
                     <div id="featureAdder">
-                        <div class="chooseFeature" id="additionalFeatures" style="font-size: 14px">
+                        <div class="multipleChoiceBox" id="additionalFeatures" style="font-size: 14px">
                         </div>
 
-                        <button class="clickable addFeature" id="addFeature">+ Add More</button><br>
+                        <button class="clickable smallActionButton" id="addFeature">+ Add More</button><br>
                         <label for="moreFeatures" id="moreFeaturesLabel"
                                class="moreFeaturesInput">Enter a new feature:</label><br>
                         <input type="text" id="moreFeatures" class="moreFeaturesInput"

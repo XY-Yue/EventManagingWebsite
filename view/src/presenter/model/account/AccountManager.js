@@ -214,6 +214,7 @@ export default class{
         if (account == null) {
             return false;
         }
+        console.log("123");
         account.removeEvent(time[0], time[1], event);
         this._storeData();
         return true;
@@ -400,8 +401,9 @@ export default class{
 
     /** Removes an event from the list of events that the organizer organized.
      * @param eventId A string represents the unique ID of this event.
+     * @param username the username of the target event
      */
-    removeFromSpecialList(eventId){
+    removeFromSpecialList(eventId, username){
         let account = this._findAccountByUsername(username);
 
         if (account != null) {

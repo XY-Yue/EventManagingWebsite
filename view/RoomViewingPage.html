@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Rooms</title>
   <link rel="icon" type="image/jpg" href="../favicon.ico"/>
-  <link rel="stylesheet" href="MainStyle.css"/>
-    <script type="module" src="RoomViewingPage.js"></script>
+  <link rel="stylesheet" href="src/MainStyle.css"/>
+    <script type="module" src="src/RoomViewingPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -91,14 +91,14 @@
 
         <div class="searchField">
             Has features:
-            <div class="chooseFeature" id="features" style="width: 80%">
+            <div class="multipleChoiceBox" id="features" style="width: 80%">
             </div>
         </div>
 
         <button class="clickable loadMoreContent" id="applyFilters">Apply</button>
     </div>
     <div class="content mainContent">
-        <button class="topButton clickable" id="addRoom">+ Add Room</button>
+        <button class="generalActionButton clickable" id="addRoom">+ Add Room</button>
         <p id="searchResultTitle"></p>
         <dl class="displayItems" id="roomList"></dl>
         <div class="loadMoreContent clickable" id="moreRoomsButton">Load More</div>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Join The Event</title>
     <link rel="icon" type="image/jpg" href="../favicon.ico"/>
-    <link rel="stylesheet" href="MainStyle.css"/>
-    <script type="module" src="EventSignUpPage.js"></script>
+    <link rel="stylesheet" href="src/MainStyle.css"/>
+    <script type="module" src="src/EventSignUpPage.js"></script>
 </head>
 <body>
 <div id="navBar"></div>
@@ -18,13 +18,17 @@
 
 <div class="contentBox">
     <div class="content fullContent">
-        <button class="topButtonRed clickable" id="signUp">Sign Up</button>
+        <button class="generalActionButtonRed clickable" id="signUp">Sign Up</button>
+        <button class="generalActionButtonRed clickable" id="withdraw">Cancel Sign Up</button>
+        <button class="generalActionButtonRed clickable" id="cancel">Cancel This Event</button>
+        <br>
+        <br>
         <h1 id="name"></h1>
         <table class="displayDetailTable">
             <tr>
                 <td class="fieldName">Location: </td>
                 <td class="fieldValue">
-                    <div id="Location">
+                    <div id="location">
 
                     </div>
                 </td>
@@ -45,7 +49,15 @@
                     </div>
                 </td>
             </tr>
-            <tr id="receiverField">
+            <tr id="attendeesField">
+                <td class="fieldName">Current Number of Attendees: </td>
+                <td class="fieldValue">
+                    <div id="attendees">
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="hostField">
                 <td class="fieldName">Hosts: </td>
                 <td class="fieldValue">
                     <div id="hosts">
@@ -57,6 +69,14 @@
                 <td class="fieldName">Description: </td>
                 <td class="fieldValue">
                     <div id="description">
+
+                    </div>
+                </td>
+            </tr>
+            <tr id="featuresField">
+                <td class="fieldName">Features needed: </td>
+                <td class="fieldValue">
+                    <div id="features">
 
                     </div>
                 </td>

@@ -116,7 +116,7 @@ export default class {
      * @return true if added successfully, else false
      */
     addAttendee(attendee){
-        if (this._attendee.length < this._capacity && !this._attendee.contains(attendee)){
+        if (this._attendee.length < this._capacity && !this._attendee.includes(attendee)){
             this._attendee.push(attendee);
             return true;
         }else return false;
@@ -139,7 +139,7 @@ export default class {
      * @return true if given username in attendee list, else false
      */
     isInEvent(attendee){
-        return this._attendee.contains(attendee);
+        return this._attendee.includes(attendee);
     }
 
     /**
@@ -149,7 +149,7 @@ export default class {
      */
     removeAttendee(attendee){
         let i = this._attendee.indexOf(attendee);
-        if (i == -1){
+        if (i === -1){
             return false;
         }else {
             this._attendee.splice(i, 1);

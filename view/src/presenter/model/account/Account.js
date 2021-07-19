@@ -76,9 +76,11 @@ export default class {
      * @param id A String representing the id of event want to be canceled.
      */
     removeEvent(startTime, endTime, id){
+        console.log("123");
         if (this._schedule.hasOwnProperty(id) && this._schedule[id] != null){
-            if (this._schedule[id][0].getTime() === startTime &&
-                this._schedule[id][1].getTime() === endTime){
+            console.log(id);
+            if (this._schedule[id][0].getTime() === startTime.getTime() &&
+                this._schedule[id][1].getTime() === endTime.getTime()){
                 delete this._schedule[id];
             }
         }

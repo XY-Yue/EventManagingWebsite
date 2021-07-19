@@ -80,7 +80,8 @@ export default class{
             let specialList = this._accountManager.getSpecialList(username);
 
             for (let i = 0; i < specialList.length; i++){
-                account.specialEvents += specialList[i] + "<br>";
+                account.specialEvents += "<a href='./EventSignUpPage.html?id=" + specialList[i] + "'>"
+                    + specialList[i] + "</a><br>";
             }
         }
 
