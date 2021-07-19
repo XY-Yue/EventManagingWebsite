@@ -25,7 +25,7 @@ export default class {
 
         this._features = Array.from(features);
         this._roomName = roomName;
-        this._schedule = [];// Will be in format {eventID: [startTime of this event, endTime of this event, name], ...}
+        this._schedule = {};// Will be in format {eventID: [startTime of this event, endTime of this event, name], ...}
     }
 
     /**
@@ -70,6 +70,7 @@ export default class {
      * @param startTime Start time of the interval
      * @param endTime End time of the interval
      * @param eventID A String representation of the event id
+     * @param eventName the name of the event
      */
     addEventToSchedule(startTime, endTime, eventID, eventName){
         this._schedule[eventID] = [startTime, endTime, eventName];

@@ -27,7 +27,7 @@ export default class extends Event{
      * @return true if there is exactly one speaker given, and changed speaker successfully, else false
      */
     changeHost(speakers) {
-        if (speakers == null || speakers.length == 0) return false;
+        if (speakers == null || speakers.length === 0) return false;
         this._host = speakers[0];
         return true;
     }

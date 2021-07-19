@@ -7,9 +7,10 @@
  */
 export function isAvailable(schedule, start, finish){
     // Assuming the given time is checked with isValidTimeSlots
-    for (const value in Object.values(schedule)){
-        if ((value[0].getTime() >= start.getTime() && value[0].getTime() < finish.getTime())
-            || (value[1].getTime() <= finish.getTime() && value[1].getTime() > start.getTime())){
+    let values = Object.values(schedule);
+    for (let i = 0; i < values.length; i++){
+        if ((values[i][0].getTime() >= start.getTime() && values[i][0].getTime() < finish.getTime())
+            || (values[i][1].getTime() <= finish.getTime() && values[i][1].getTime() > start.getTime())){
             return false;
         }
     }

@@ -1,11 +1,19 @@
 import EventPresenter from "./presenter/EventPresenter.js";
 import {addMoreContent, updateListener} from "./EventDisplayer.js";
-import {extractCheckboxResult} from "./InputParser.js";
+import {extractCheckboxResult, convertDate} from "./InputParser.js";
 
 document.getElementById("searchStart").addEventListener("click", beginSearch);
 document.getElementById("moreEventsButton").addEventListener("click", callAddMoreContent);
 document.getElementById("moreEventsButton").style.display = "none";
+document.getElementById("addEvent").addEventListener("click", addEvent);
 var events = new EventPresenter();
+
+// If user is an organizer, give the option to add a new event
+if (sessionStorage.getItem("curAccount") != null && sessionStorage.getItem("curType") === "organizer"){
+    document.getElementById("addEvent").style.display = "block";
+}else {
+    document.getElementById("addEvent").style.display = "none";
+}
 
 // Handles events on EventSearchPage.html
 // Search events with the provided keywords and requirements
@@ -26,9 +34,9 @@ function beginSearch() {
         _extractRadioResult("current"),
         document.getElementById("searchKeyword").value.toString(),
         location,
-        _convertDate(document.getElementById("startDate").value.toString(),
+        convertDate(document.getElementById("startDate").value.toString(),
             document.getElementById("startHour").value.toString()),
-        _convertDate(document.getElementById("endDate").value.toString(),
+        convertDate(document.getElementById("endDate").value.toString(),
             document.getElementById("endHour").value.toString()),
         extractCheckboxResult("type"),
         speaker
@@ -65,23 +73,13 @@ function _extractRadioResult(name){
 }
 
 
-// Helper to convert the user input date into an actual date object
-// value: a date string in yyyy-mm-dd format, hour: hour of the date
-function _convertDate(value, hour){
-    if (value === "") {
-        return null;
-    }
-    let day = value.split("-");
-    return new Date(
-        parseInt(day[0], 10), // year
-        parseInt(day[1], 10) - 1, // month
-        parseInt(day[2], 10), // day
-        parseInt(hour, 10) // hour
-    );
-}
-
-
 // A helper function to call addMoreContent, avoids duplicated code
 function callAddMoreContent(){
     addMoreContent(events, "searchResult");
+}
+
+
+// Respond to user click for the add event button
+function addEvent(){
+    window.open("EventCreatingPage.html", "_self");
 }

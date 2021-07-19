@@ -28,8 +28,12 @@ export default class {
     createEvent(type, eventName, capacity, start, end, description, room, feature, speakers, vip, creatorUsername){
         if (eventName === ""){
             return "Event name cannot be empty!";
+        }else if (start == null || end == null){
+            return "Please enter a valid start and end time!"
         }else if (start.getTime() >= end.getTime()){
             return "Event start time has to be before end time!";
+        }else if (start.getTime() <= new Date().getTime()) {
+            return "Start time must be later than the current time!";
         }else if (room == null){
             return "Select a room!";
         }else if (speakers.length === 0 &&
@@ -38,10 +42,10 @@ export default class {
         }else {
             let eventID = this._eventManager.createEvent(eventName, start, end, room, description, capacity, type);
             this._eventManager.setVIP(eventID, vip);
-            this._eventManager.setRequiredFeatures(feature);
+            this._eventManager.setRequiredFeatures(eventID, feature);
 
+            this._eventManager.scheduleSpeaker(eventID, speakers);
             for (let i = 0; i < speakers.length; i++){
-                this._eventManager.scheduleSpeaker(eventID, speakers[i]);
                 this._accountManager.signUpEvent([start, end], eventID, speakers[i], eventName);
                 this._accountManager.addToSpecialList(eventID, speakers[i]);
             }
@@ -65,6 +69,7 @@ export default class {
         if (start.getTime() >= end.getTime()){
             return "";
         }
+
         let rooms = this._roomManager.availableRooms(start, end, feature, capacity);
         let output = "";
 
@@ -112,6 +117,19 @@ export default class {
 
         for (let i = 0; i < allTypes.length; i++){
             output += "<option value='" + allTypes[i] + "'>" + allTypes[i] + "</option>";
+        }
+        return output;
+    }
+
+    /**
+     * Provides all existing features, formatted so that they can be inserted into a checkbox form directly
+     */
+    allFeatures(){
+        let features = this._roomManager.getAllFeatures();
+        let output = "";
+
+        for (let i = 0; i < features.length; i++){
+            output += formatToCheckbox(features[i], "feature");
         }
         return output;
     }

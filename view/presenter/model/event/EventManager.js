@@ -206,6 +206,7 @@ export default class{
 
 
         this._storeData();
+        return id;
     }
 
     /**
@@ -479,12 +480,9 @@ export default class{
         let event = this._findEvent(eventID);
         if (event == null) return false;
         else {
-            let success = event.addRequiredFeatures(requiredFeatures);
-
-            if (success)
-                this._storeData();
-
-            return success;
+            event.addRequiredFeatures(requiredFeatures);
+            this._storeData();
+            return true;
         }
     }
 

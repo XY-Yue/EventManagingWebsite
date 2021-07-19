@@ -170,8 +170,8 @@ export default class {
         let schedule = "";
         for (const [key, value] of Object.entries(room._schedule)){
             if (value[1].getTime() > new Date().getTime()){
-                schedule += key + ": <a href='../EventSignUpPage.html?id=" + key + "'></a>"
-                    + value[2] + ";  from " + value[0] + " to " + value[1] + ";<br>";
+                schedule += key + ": <a href='./EventSignUpPage.html?id=" + key + "'>"
+                    + value[2] + "</a>;<br>  from " + value[0] + " to " + value[1] + ";<br>";
             }
         }
         room._schedule = schedule;

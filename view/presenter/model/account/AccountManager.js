@@ -58,7 +58,7 @@ export default class{
         }
 
         for (const [key, value] of Object.entries(jsonObj._schedule)){
-            account.addEvent(value[0], value[1], key);
+            account.addEvent(value[0], value[1], key, value[2]);
         }
 
         for (const [key, value] of Object.entries(jsonObj._message)){
@@ -453,7 +453,7 @@ export default class{
         if (speakers != null && speakers !== []){
             for (let i = 0; i < speakers.length; i++){
                 if (speakers[i].isAvailable(eventDuration[0], eventDuration[1])){
-                    result.push(speakers[i]);
+                    result.push(speakers[i].username);
                 }
             }
         }

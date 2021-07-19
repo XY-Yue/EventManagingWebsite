@@ -73,7 +73,7 @@ export default class{
         if (room == null) {
             return null;
         }else {
-            return JSON.parse(JSON.stringify(room, reviver));
+            return JSON.parse(JSON.stringify(room), reviver);
         }
     }
 
@@ -87,7 +87,7 @@ export default class{
      */
     availableRooms(start, end, features, capacity){
         let output = [];
-        for (const [name, room] in Object.entries(this._roomList)){
+        for (const [name, room] of Object.entries(this._roomList)){
             if (room.capacity >= capacity){
                 if (room.available(start, end)){
                     if (room.hasFeatures(features)){
@@ -139,6 +139,7 @@ export default class{
      */
     addEventToRoom(roomName, eventID, eventName, startTime, endTime){
         let room = this._findRoom(roomName);
+        console.log(room);
         if (room != null){
             room.addEventToSchedule(startTime, endTime, eventID, eventName);
             this._storeData();
