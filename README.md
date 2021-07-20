@@ -14,6 +14,11 @@ I have only run the project with Visual Studio Code's plugin Live Server on Fire
 Due to some difficulties (see details below), I only managed to store data locally using local storage, which means I cannot provide some starting data for testing 
 (I am not sure if hard coding some data in Javascript is a good idea)  
 
+## To test the project  
+So far, only organizers are allowed to add rooms, add events, etc. To register as an organizer, use invitation code "create an organizer".  
+To register as a speaker, use "create an speaker" as invitation code, to register as a vip account, use "create an vip" as invitation code.  
+For more details, see view/src/presenter/model/account/AccountManager.js, all invitation code can be found in the constructor.
+
 ## Thoughts on this project  
 As mestioned above, the purpose of this project is mostly learning for myself, so I did not put much detail on designing the features, but cpoied mostly from EventManagingSystem. 
 The logic in the implementations are also mostly copied from EventManagingSystem, so I did not meet much difficulties with debugging as the logic in that project is tested 
