@@ -20,7 +20,7 @@ To register as a speaker, use "create an speaker" as invitation code, to registe
 For more details, see view/src/presenter/model/account/AccountManager.js, all invitation code can be found in the constructor.
 
 ## Thoughts on this project  
-As mestioned above, the purpose of this project is mostly learning for myself, so I did not put much detail on designing the features, but cpoied mostly from EventManagingSystem. 
+As mestioned above, the purpose of this project is mostly learning for myself, so I did not spend much time on designing the features, but copied mostly from EventManagingSystem. 
 The logic in the implementations are also mostly copied from EventManagingSystem, so I did not meet much difficulties with debugging as the logic in that project is tested 
 pretty well. But I still made test cases when coding to make sure the development is test driven.  
 What I put most of my effort in is to explore various tool that I can use to do web development and to try the MVP pattern. Even if only Javascript, HTML and CSS are used in the project, 
