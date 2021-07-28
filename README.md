@@ -43,7 +43,7 @@ Will definitly come back to this as soon as I learned how to communicate with th
 ### What I should do in the future for this project
 1. Manage to store files on the server and communicate with it. In this project, I am storing all data in local storage, 
 which is a bad idea for a website.
-2. Use database technologies, I studied related information too, but I feel like I did not fully understand it. Which is why I did not even use IndexDB.
+2. Use database technologies, I studied related information too, but I feel like I did not fully understand it. Which is why I did not even use IndexDB. Will definitly improve this after I gain some more knowledge (such as taking a course on this field).
 3. Test the project more carefully. Even if the project is developed mostly test driven, I still need to do more testing to make sure it is bug free.
 4. Add more features to the project to make it more complete. But I am not sure if it is worth it, the topic of this project is from a course project and is not very 
 interesting. Therefore, the project will mostly likely to act as a platform where I try different things.
