@@ -32,7 +32,7 @@ I am looking forward to gain a better understanding on MVP in the future.
 Also, I made the project kind of in a rush, before a test and an assignment. I should definitly come back to this project later.
 
 ### What I learned from this project
-1. General web design experience, including experience on JS, HTML and CSS. Also includes using the tools such as query test to pass data, DOM to modify HTML and CSS and use local storage to store data.
+1. General web design experience, including experience on JS, HTML and CSS. Also includes using the tools such as query text to pass data, DOM to modify HTML and CSS and use local storage & JSON notation to store data.
 2. An experience of designing a GUI myself. (for the first time, a web GUI)
 3. An experience of software development with a dynamic typing language (previous experience with python only has small projects).
 4. Studied PHP and tried to use AJAX to communicate with it (to store file on the server), but my XMLHttpRequest cannot run PHP files for some reason, it runs other files fine.
