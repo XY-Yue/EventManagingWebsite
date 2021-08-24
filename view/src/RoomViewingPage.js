@@ -40,7 +40,7 @@ function loadMoreRooms(){
     let content = roomPresenter.getMoreRooms();
 
     if (content === ""){
-        document.getElementById("roomList").innerHTML += "No more events...";
+        document.getElementById("roomList").innerHTML += "No more rooms...";
         document.getElementById("moreRoomsButton").style.display = "none";
     }else {
         document.getElementById("roomList").innerHTML += content;
