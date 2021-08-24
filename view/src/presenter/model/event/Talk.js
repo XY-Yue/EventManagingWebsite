@@ -26,7 +26,7 @@ export default class extends Event{
      * @param speakers new speaker of this talk
      * @return true if there is exactly one speaker given, and changed speaker successfully, else false
      */
-    changeHost(speakers) {
+    set host(speakers) {
         if (speakers == null || speakers.length === 0) return false;
         this._host = speakers[0];
         return true;

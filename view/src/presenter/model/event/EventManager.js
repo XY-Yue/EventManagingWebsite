@@ -67,7 +67,7 @@ export default class{
             if (!Array.isArray(hosts)){
                 hosts = [hosts];
             }
-            event.changeHost(hosts);
+            event.host = hosts;
         }
         return event;
     }
@@ -254,7 +254,7 @@ export default class{
     scheduleSpeaker(eventID, username){
         let event = this._findEvent(eventID);
         if (event != null){
-            let success = event.changeHost(username);
+            let success = event.host = username;
 
             if (success)
                 this._storeData();
