@@ -3,6 +3,7 @@ This project is a Web version of [EventManagingSystem](https://github.com/XY-Yue
 but have a Web UI written in HTML, Javascript and CSS, see README of that project for details of the design ideas and features.  
 The purpose of this project is mainly for myself to gain experience on Web languages (Javascript, HTML and CSS) and design patterns such as MVP, and because of that, 
 I mostly copied the design structure and features of [EventManagingSystem](https://github.com/XY-Yue/EventManagingSystem), but I designed the web UI myself to make use of the web technologies.  
+Even if this is meant to be a learning project for myself, the project itself, especially the UI, can be used in various scenarios such as course planning and time tables generation for schools/universities, website for cinemas to schedule movies, any event planning activities, etc..
 I was not very familiar with server client interaction at the moment I start this project, so for now, the whole project runs on the client. By now (after this project is finished) I am planning to first try Java Spring framework and then try to add some PHP or Node to this project and do some server client interactions.  
   
 ## To run the project
